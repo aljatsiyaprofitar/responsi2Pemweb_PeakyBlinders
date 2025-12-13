@@ -29,8 +29,7 @@ CREATE TABLE timelline (
     FOREIGN KEY (character_id) REFERENCES characters(char_id) ON DELETE CASCADE
 );
 
-CREATE TABLE rp_char (
+CREATE TABLE roleplay_char (
     rp_char_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-    nama VARCHAR(100) NOT NULL,
-    timeline VARCHAR(300) NOT NULL
+    rp_char_name VARCHAR(100) NOT NULL,
 );
