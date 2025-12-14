@@ -1,40 +1,9 @@
-<?php
-session_start();
-require 'config/koneksi.php';
-
-// Ambil ID Cerita (Default 1 jika baru mulai)
-$story_id = isset($_GET['story_id']) ? intval($_GET['story_id']) : 1;
-
-// 1. Ambil Data Cerita
-$query = "SELECT * FROM game_stories WHERE story_id = $story_id";
-$result = mysqli_query($koneksi, $query);
-$story = mysqli_fetch_assoc($result);
-
-// 2. LOGIC CEK GAME OVER (Ini bagian penting permintaanmu)
-if ($story['is_game_over'] == 1) {
-    // Simpan pesan kematian ke session biar bisa ditampilkan di halaman Game Over
-    $_SESSION['game_over_msg'] = $story['story_text'];
-    
-    // Redirect ke halaman Game Over terpisah
-    header("Location: rp_game_over.php");
-    exit;
-}
-
-// 3. Ambil Pilihan (Jika bukan game over)
-$choices = [];
-$c_query = "SELECT * FROM game_choices WHERE story_id = $story_id";
-$c_result = mysqli_query($koneksi, $c_query);
-while($row = mysqli_fetch_assoc($c_result)) {
-    $choices[] = $row;
-}
-?>
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="Mission1.css" />
+    <link rel="stylesheet" href="Winner.css" />
   </head>
   <body>
     <div class="desktop">
@@ -88,43 +57,47 @@ while($row = mysqli_fetch_assoc($c_result)) {
       
       <img class="rectangle-cerita" src="Missions img/rectangle cerita.png" />
 
-      <div class="judul-cerita">Shadow Of Garrison</div>
+      <div class="judul-cerita">Shadow Of Garrison - YOU WIN</div>
       
       </p>
       <div class="misi">
         <p>
-          Kabut Birmingham turun seperti tirai kematian malam itu. 
-          Lampu-lampu jalan berkelip lelah, seolah tidak sanggup menerangi rahasia 
-          yang disembunyikan Small Heath. Deru pabrik, bau arang, dan suara langkah-langkah gelisah 
-          menjadi musik latar kejadian-kejadian yang tidak pernah diceritakan kepada siapapun.
+          Tommy berdiri perlahan, menyulut rokoknya dengan ketenangan
+          yang hanya dimiliki orang-orang yang pernah melihat kematian terlalu sering.
+          Ia mendekat, menepuk bahumu sekali—singkat, tapi berat seperti sumpah.
+          “Mulai malam ini,” katanya pelan,
+          “kabut Birmingham tidak lagi sekadar menelanmu…
+          itu kini melindungimu.”
         </p>
 
         <p>
-          Di tengah kegelapan itu—kaulah pendatang baru. Wajah asing dengan masa lalu yang tak banyak orang peduli, 
-          namun cukup untuk membuat Arthur Shelby menatapmu dengan tajam… seperti menilai apakah kau layak hidup 
-          atau layak dikubur di belakang Garrison.
-        </p>
+          Arthur menambahkan dengan suara serak:
+          “Sedikit darah di tanganmu—itu tiket masuk keluarga.”
 
         <p class="quote">
-          “Dengarkan baik-baik,” katanya pelan, tapi dengan nada penuh penekanan.<br>
-          “Di tempat ini, satu keputusan salah bisa membuatmu hilang… tanpa nama, tanpa jejak.”
+          Finn tersenyum tipis.
+          “Di kota ini, hanya dua jenis orang yang bertahan:
+          yang diburu… dan yang ditakuti.
+          Kau sekarang bukan lagi yang pertama.”
         </p>
 
         <p>
-          Hari ini adalah ujian pertamamu. Satu langkah keliru, dan Small Heath akan menelanimu hidup-hidup. 
-          Namun jika kau berhasil… kau bukan sekadar pendatang lagi.
+          HTommy menghembuskan asap, menatapmu
+          seolah membaca masa depan yang baru kau buka dengan pisau barusan.
+          “Selamat,” bisiknya.
+          “Mulai detik ini…
+          kau adalah bayangan kami, dan kami adalah senjata di punggungmu.
+          Jatuh pun takkan kau jatuh sendirian.”
         </p>
 
-        <p>
-          Kau menjadi bagian dari keluarga yang ditakuti seluruh Birmingham.
-        </p>
       </div>
       
-      <a href="Mission1f.html">
+      <a href="Mission.html">
         <img class="box-skor" src="Missions img/rectangle next back.png" />
-        <div class="text-skor">Next</div>
+        <div class="text-skor">Back</div>
       </a>
 
     </div>
   </body>
 </html>
+

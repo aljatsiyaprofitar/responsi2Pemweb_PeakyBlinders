@@ -1,40 +1,9 @@
-<?php
-session_start();
-require 'config/koneksi.php';
-
-// Ambil ID Cerita (Default 1 jika baru mulai)
-$story_id = isset($_GET['story_id']) ? intval($_GET['story_id']) : 1;
-
-// 1. Ambil Data Cerita
-$query = "SELECT * FROM game_stories WHERE story_id = $story_id";
-$result = mysqli_query($koneksi, $query);
-$story = mysqli_fetch_assoc($result);
-
-// 2. LOGIC CEK GAME OVER (Ini bagian penting permintaanmu)
-if ($story['is_game_over'] == 1) {
-    // Simpan pesan kematian ke session biar bisa ditampilkan di halaman Game Over
-    $_SESSION['game_over_msg'] = $story['story_text'];
-    
-    // Redirect ke halaman Game Over terpisah
-    header("Location: rp_game_over.php");
-    exit;
-}
-
-// 3. Ambil Pilihan (Jika bukan game over)
-$choices = [];
-$c_query = "SELECT * FROM game_choices WHERE story_id = $story_id";
-$c_result = mysqli_query($koneksi, $c_query);
-while($row = mysqli_fetch_assoc($c_result)) {
-    $choices[] = $row;
-}
-?>
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="Mission1.css" />
+    <link rel="stylesheet" href="Mission1f.css" />
   </head>
   <body>
     <div class="desktop">
@@ -120,11 +89,17 @@ while($row = mysqli_fetch_assoc($c_result)) {
         </p>
       </div>
       
-      <a href="Mission1f.html">
-        <img class="box-skor" src="Missions img/rectangle next back.png" />
-        <div class="text-skor">Next</div>
+      <a href="Mission2.html">
+        <img class="pilihan1" src="Missions img/Rectangle opsi.png" />
+        <div class="text1">Pergi ke Garrison seperti perintah.</div>
+      </a>
+
+      <a href="GameOver.html">
+        <img class="pilihan2" src="Missions img/Rectangle opsi.png" />
+        <div class="text2">Lari bersembunyi di rumah.</div>
       </a>
 
     </div>
   </body>
 </html>
+

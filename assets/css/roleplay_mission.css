@@ -1,0 +1,503 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+
+
+.desktop {
+  background-color: #383837;
+  width: 100%;
+  min-width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+.desktop .rectangle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1439px;
+  height: 123px;
+  background-color: #181815;
+}
+
+.desktop .vector {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 4.79%;
+  left: 75.00%;
+}
+
+.desktop .img {
+  position: absolute;
+  width: 2.22%;
+  height: 2.93%;
+  top: 4.30%;
+  left: 74.31%;
+}
+
+.desktop .text-wrapper {
+  position: absolute;
+  top: 46px;
+  left: 1109px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #e7c691;
+  font-size: 23px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .div {
+  position: absolute;
+  top: 46px;
+  left: 1286px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #e7c691;
+  font-size: 23px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .text-wrapper-2 {
+  position: absolute;
+  top: 50px;
+  left: 241px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #e7c691;
+  font-size: 23px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .text-wrapper-3 {
+  position: absolute;
+  top: 50px;
+  left: 421px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #e7c691;
+  font-size: 23px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .vector-2 {
+  position: absolute;
+  width: 0;
+  height: 2.54%;
+  top: 4.49%;
+  left: 87.29%;
+}
+
+.desktop .vector-3 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 5.32%;
+  left: 26.91%;
+}
+
+.desktop .vector-4 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 5.27%;
+  left: 15.35%;
+}
+
+.desktop .vector-5 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 5.27%;
+  left: 14.79%;
+}
+
+.desktop .rectangle-2 {
+  position: absolute;
+  top: 32px;
+  left: 377px;
+  width: 150px;
+  height: 63px;
+  background-color: #e7c69126;
+  border-radius: 10px;
+  border: 1px solid;
+  border-color: #795934;
+}
+
+.desktop .vector-6 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 5.35%;
+  left: 6.09%;
+}
+
+.desktop .vector-7 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 6.18%;
+  left: 6.48%;
+}
+
+.desktop .vector-8 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 5.10%;
+  left: 5.99%;
+}
+
+.desktop .text-wrapper-4 {
+  position: absolute;
+  top: 50px;
+  left: 112px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #e7c691;
+  font-size: 23px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .peaky-blinders {
+  position: absolute;
+  top: 123px;
+  left: 0;
+  width: 549px;
+  height: 901px;
+  aspect-ratio: 0.61;
+}
+
+.desktop .peaky-blinders-2 {
+  position: absolute;
+  top: 710px;
+  left: 996px;
+  width: 444px;
+  height: 314px;
+  aspect-ratio: 1.41;
+}
+
+.desktop .rectangle-3 {
+  position: absolute;
+  top: 272px;
+  left: 40px;
+  width: 425px;
+  height: 720px;
+}
+
+.desktop .rectangle-4 {
+  position: absolute;
+  top: 272px;
+  left: 507px;
+  width: 425px;
+  height: 720px;
+}
+
+.desktop .rectangle-5 {
+  position: absolute;
+  top: 909px;
+  left: 575px;
+  width: 293px;
+  height: 61px;
+}
+
+.desktop .text-wrapper-5 {
+  position: absolute;
+  top: 927px;
+  left: 626px;
+  font-family: "Lucida Fax-Demibold", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 2.20px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .rectangle-6 {
+  position: absolute;
+  top: 272px;
+  left: 974px;
+  width: 425px;
+  height: 720px;
+}
+
+.desktop .rectangle-7 {
+  position: absolute;
+  top: 909px;
+  left: 1040px;
+  width: 293px;
+  height: 61px;
+  background-color: #d9d9d9c2;
+  border-radius: 20px;
+  border: 3px solid;
+  border-color: #000000;
+}
+
+.desktop .text-wrapper-6 {
+  left: 1091px;
+  position: absolute;
+  top: 927px;
+  font-family: "Lucida Fax-Demibold", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 2.20px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .img-2 {
+  position: absolute;
+  top: 281px;
+  left: 52px;
+  width: 400px;
+  height: 301px;
+  aspect-ratio: 1.33;
+}
+
+.desktop .text-wrapper-7 {
+  position: absolute;
+  top: 587px;
+  left: 76px;
+  font-family: "Metal Mania-Regular", Helvetica;
+  font-weight: 400;
+  color: #ecd4ae;
+  font-size: 36px;
+  text-align: center;
+  letter-spacing: 3.60px;
+  line-height: normal;
+}
+
+.desktop .text-wrapper-8 {
+  position: absolute;
+  top: 590px;
+  left: 549px;
+  font-family: "Metal Mania-Regular", Helvetica;
+  font-weight: 400;
+  color: #ecd4ae;
+  font-size: 36px;
+  text-align: center;
+  letter-spacing: 3.60px;
+  line-height: normal;
+}
+
+.desktop .p {
+  position: absolute;
+  top: 590px;
+  left: 979px;
+  font-family: "Metal Mania-Regular", Helvetica;
+  font-weight: 400;
+  color: #ecd4ae;
+  font-size: 36px;
+  text-align: center;
+  letter-spacing: 3.60px;
+  line-height: normal;
+}
+
+.desktop .garrison-tavern {
+  position: absolute;
+  top: 638px;
+  left: 69px;
+  width: 360px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #c5a064;
+  font-size: 16px;
+  letter-spacing: 2.40px;
+  line-height: normal;
+}
+
+.desktop .bisikan-tentang {
+  position: absolute;
+  top: 641px;
+  left: 540px;
+  width: 360px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #c5a064;
+  font-size: 16px;
+  letter-spacing: 2.40px;
+  line-height: normal;
+}
+
+.desktop .sebuah-surat {
+  position: absolute;
+  top: 641px;
+  left: 1003px;
+  width: 360px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #c5a064;
+  font-size: 16px;
+  letter-spacing: 2.40px;
+  line-height: normal;
+}
+
+.desktop .pindown-io {
+  position: absolute;
+  top: 281px;
+  left: 521px;
+  width: 400px;
+  height: 301px;
+  aspect-ratio: 1.33;
+}
+
+.desktop .pindown-io-2 {
+  position: absolute;
+  top: 281px;
+  left: 986px;
+  width: 400px;
+  height: 301px;
+  aspect-ratio: 1.33;
+}
+
+.desktop .text-wrapper-9 {
+  position: absolute;
+  top: 149px;
+  left: 599px;
+  font-family: "Metal Mania-Regular", Helvetica;
+  font-weight: 400;
+  color: #ecd4ae;
+  font-size: 70px;
+  text-align: center;
+  letter-spacing: 7.00px;
+  line-height: normal;
+}
+
+.desktop .rectangle-8 {
+  position: absolute;
+  top: 909px;
+  left: 97px;
+  width: 293px;
+  height: 61px;
+  background-color: #d9d9d9c2;
+  border-radius: 20px;
+  border: 3px solid;
+  border-color: #000000;
+}
+
+.desktop .text-wrapper-10 {
+  left: 148px;
+  position: absolute;
+  top: 927px;
+  font-family: "Lucida Fax-Demibold", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 2.20px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .rectangle-9 {
+  position: absolute;
+  top: 164px;
+  left: 45px;
+  width: 174px;
+  height: 84px;
+}
+
+.desktop .high-score {
+  position: absolute;
+  top: 173px;
+  left: 65px;
+  font-family: "Jacques Francois-Regular", Helvetica;
+  font-weight: 400;
+  color: #e7c691;
+  font-size: 25px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.desktop .text-wrapper-11 {
+  position: absolute;
+  top: 213px;
+  left: 65px;
+  font-family: "Lucida Fax-Demibold", Helvetica;
+  font-weight: 400;
+  color: #e7c691;
+  font-size: 22px;
+  text-align: center;
+  letter-spacing: 2.20px;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .group {
+  left: 1080px;
+  width: 125px;
+  position: absolute;
+  top: 183px;
+  height: 45px;
+}
+
+.desktop .mask-group {
+  position: absolute;
+  top: 191px;
+  left: 1093px;
+  width: 30px;
+  height: 30px;
+}
+
+.desktop .group-2 {
+  left: 1218px;
+  width: 181px;
+  position: absolute;
+  top: 183px;
+  height: 45px;
+}
+
+.desktop .text-wrapper-12 {
+  position: absolute;
+  top: 197px;
+  left: 1131px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #e7c691;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}
+
+.desktop .text-wrapper-13 {
+  position: absolute;
+  top: 197px;
+  left: 1262px;
+  font-family: "Lucida Fax-Regular", Helvetica;
+  font-weight: 400;
+  color: #e7c691;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+}

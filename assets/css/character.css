@@ -1,0 +1,218 @@
+/* RESET */
+html, body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  box-sizing: border-box;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; }
+
+/* LAYOUT UTAMA */
+.desktop {
+  background-color: #383837;
+  width: 1440px;
+  height: 1024px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* HEADER BAR */
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1439px;
+  height: 123px;
+  background-color: #181815;
+}
+
+
+/* NAVIGATION */
+.nav-item-container {
+  position: absolute;
+  top: 50px;
+  height: 25px;
+}
+
+.nav-icon {
+  position: absolute;
+  width: 25px;
+  height: 20px;
+  filter: brightness(1.2);
+  top: -10;
+  left: 5px;
+}
+
+.nav-text {
+  position: absolute;
+  color: #e7c691;
+  font-size: 20px;
+  font-family: 'Lucida Fax', Helvetica;
+  letter-spacing: 1px;
+}
+
+.nav-home { left: 80px; width: 100px; }
+.home-text { left: 32px; }
+
+.nav-character { left: 205px; width: 140px; }
+.character-text { left: 35px; }
+
+.nav-roleplay { left: 377px; width: 160px; }
+.roleplay-text { left: 45px; }
+
+.nav-profile { left: 1075px; width: 120px; }
+.profile-text { left: 35px; }
+
+.nav-logout { left: 1250px; width: 120px; }
+.logout-text { left: 35px; }
+
+/* Highlight Character */
+.tanda {
+    position: absolute;
+    top: 30px; 
+    left: 200px;
+    width: 150px;
+    height: 63px;
+    background-color: #e7c69126; 
+    border-radius: 10px;
+    border: 1px solid #795934;
+}
+
+
+/* BACKGROUND */
+.background{
+    position: absolute;
+    top: 216px;
+    left: 345px;
+    width: 749px;
+    height: 730px;
+}
+
+/* TITLE */
+.title {
+    position: absolute;
+    top: 162px;
+    left: 251px;
+    font-family: 'Metal Mania', serif;
+    color: #ecd4ae;
+    font-size: 60px;
+    letter-spacing: 32px;
+}
+
+/* SUBTITLE */
+.subtitle {
+    position: absolute;
+    top: 236px;
+    left: 236px;
+    width: 1087px;
+    font-family: 'Lucida Sans', Helvecita;
+    color: #ecd4ae;
+    font-size: 28px;
+    letter-spacing: 2.8px;
+}
+
+/* ===== BOX PERSEGI SEPERTI INDEX ===== */
+.box {
+    position: absolute;
+    width: 440px;
+    height: 308px;
+    background-color: #e7c69133;
+    border-radius: 40px;
+    z-index: 1;
+}
+
+/* posisi box */
+.Tomas { top: 370px; left: 31px; }
+.Arthur { top: 370px; left: 499px; }
+.Polly { top: 370px; left: 967px; }
+.John{ top: 689px; left: 31px; }
+.Ada { top: 689px; left: 499px; }
+.Finn { top: 689px; left: 967px; }
+
+/* SVG RECTANGLE (layer di belakang) */
+.rect {
+    position: absolute;
+    width: 440px;
+    height: 308px;
+    z-index: 0;
+}
+
+/* CHARACTER NAMES */
+.char {
+    position: absolute;
+    font-family: 'Old Standard TT', serif;
+    color: #ecd4ae;
+    font-size: 30px;
+    letter-spacing: 3px;
+    z-index: 2;
+}
+
+.char span {
+    font-size: 18px;
+    letter-spacing: 0.32px;
+}
+
+.cThomas{ top: 400px; left: 65px; }
+.cArthur { top: 400px; left: 535px; }
+.cPolly { top: 400px; left: 1013px; }
+.cJohn { top: 715px; left: 65px; }
+.cAda { top: 715px; left: 535px; }
+.cFinn { top: 715px; left: 1013px; }
+
+/* DESCRIPTIONS */
+.desc {
+    position: absolute;
+    width: 316px;
+    font-family: 'Old Standard TT', serif;
+    color: #ecd4ae;
+    font-size: 24px;
+    letter-spacing: 2.4px;
+    z-index: 2;
+}
+
+.dThomas{ top: 487px; left: 65px; }
+.dArthur { top: 487px; left: 535px; }
+.dPolly { top: 487px; left: 1013px; }
+.dJohn { top: 792px; left: 65px; }
+.dAda { top: 792px; left: 537px; }
+.dFinn { top: 792px; left: 1008px; }
+
+/* Hilangkan underline default link */
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Jadikan seluruh item bisa diklik */
+.nav-item-container {
+    cursor: pointer;
+}
+
+/* Efek hover (halus & elegan) */
+.nav-item-container:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+/* Pastikan teks & icon tetap warna asli */
+.nav-item-container:hover .nav-text {
+    color: #f0d9b5;
+}
+
+.box {
+  cursor: pointer;
+}
+
+.box:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.box:hover {
+  color: #f0d9b5;
+}

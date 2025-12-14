@@ -10,31 +10,93 @@ if (!$character) {
 $timeline = getCharacterTimeline($character['char_id']);
 ?>
 
-<div class="detail-container">
-    <div class="frame-image">
-        <img src="assets/images/<?= $character['image_path']; ?>" alt="<?= $character['name']; ?>">
-    </div>
-    
-    <div class="bio-content">
-        <h1><?= $character['name']; ?></h1>
-        <blockquote class="quote">
-            "<?= htmlspecialchars($character['quotes']); ?>"
-        </blockquote>
-        <p class="long-desc">
-            <?= nl2br(htmlspecialchars($character['long_desc'])); ?>
-        </p>
-    </div>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="ArthurShelby.css" />
+  </head>
+  <body>
+    <div class="desktop">
+      <img class="background-merokok" src="Karakter img/merokok.png" />
+      <img class="background-silet" src="Karakter img/silet.png" />
+      <img class="karakter" src="Karakter img/arthur.png" />
+      <img class="background-asap" src="Karakter img/asap.png" />
+      <img class="pigura" src="Karakter img/pigura.png" />
+      <p class="deskripsi">
+        Arthur Shelby adalah putra tertua keluarga Shelby dan tangan kanan Thomas Shelby dalam Peaky Blinders. Berbeda dengan Thomas yang tenang dan strategis, Arthur dikenal lebih emosional, impulsif, dan sering bertindak terlebih dahulu sebelum berpikir. Pengalamannya selama Perang Dunia I juga meninggalkan trauma mendalam yang mempengaruhi stabilitas emosinya.  Meskipun keras dan brutal, Arthur memiliki sisi loyalitas dan kasih sayang yang kuat terhadap keluarganya. Ia menjadi kekuatan fisik utama Peaky Blinders—sekaligus sosok yang terus berjuang menghadapi bayang-bayang masa lalu dan identitas dirinya.
+      <div class="nama-karakter">Arthur Shelby</div>
+      <p class="the-life-path-of">
+        <span class="span">The Life Path <br /></span>
+        <span class="text-wrapper-2">of <br /></span>
+        <span class="span">Arthur Shelby</span>
+      </p>
+      <!-- HEADER BAR -->
+      <div class="header"></div>
 
-<div class="timeline-section">
-    <h2>The Life Path of <br> <?= $character['name']; ?></h2>
-    
-    <div class="timeline-container">
-        <?php foreach ($timeline as $event): ?>
-            <div class="timeline-item">
-                <div class="year"><?= htmlspecialchars($event['year_period']); ?></div>
-                <div class="event-desc"><?= htmlspecialchars($event['event_description']); ?></div>
-            </div>
-            <?php endforeach; ?>
+    <a href="index.html" class="nav-link">
+        <div class="nav-item-container nav-home">
+            <img class="nav-icon" src="Avatar img/home.png" />
+            <div class="nav-text home-text">Home</div>
+        </div>
+    </a>
+
+    <a href="Karakter.html" class="nav-link">
+        <div class="tanda"></div>
+        <div class="nav-item-container nav-character">
+            <img class="nav-icon" src="Avatar img/character.png" />
+            <div class="nav-text character-text">Character</div>
+        </div>
+    </a>
+
+    <a href="Avatar.html" class="nav-link">
+        <div class="nav-item-container nav-roleplay">
+            <img class="nav-icon" src="Avatar img/roleplay.png" />
+            <div class="nav-text roleplay-text">Roleplay</div>
+        </div>
+    </a>
+
+    <a href="Start.html" class="nav-link">
+        <div class="nav-item-container nav-profile">
+            <img class="nav-icon" src="Avatar img/profile.png" />
+            <div class="nav-text profile-text">Aljatsiya</div>
+        </div>
+    </a>
+
+    <a href="Halaman1.html" class="nav-link">
+        <div class="nav-item-container nav-logout">
+            <img class="nav-icon" src="Avatar img/logout.png" />
+            <div class="nav-text logout-text">Logout</div>
+        </div>
+    </a>
+
+      <img class="background-order" src="Karakter img/by order.png" />
+      <p class="tekstimeline1">Lahir di Birmingham sebagai putra pertamakeluarga Shelby.</p>
+      <p class="tekstimeline2">Terlibat membangun awal mula Peaky Blinders bersama adik-adiknya.</p>
+      <p class="tekstimeline3">Bertugas dalam Perang Dunia 1, pulang dengan trauma berat.</p>
+      <p class="tekstimeline4">Bergabung kembali sebagai kekuatan utama dalam operasi Peaky Blinders.</p>
+      <p class="tekstimeline5">Menghadapi konflik antar geng dan pergulatan emosi yang tidak stabil.</p>
+      <p class="tekstimeline6">Memasuki masa krisis identitas.</p>
+      <img class="pita1" src="Karakter img/timeline.png" />
+      <img class="pita2" src="Karakter img/timeline.png" />
+      <img class="pita3" src="Karakter img/timeline.png" />
+      <img class="pita4" src="Karakter img/timeline.png" />
+      <img class="pita5" src="Karakter img/timeline.png" />
+      <img class="pita6" src="Karakter img/timeline.png" />
+      <div class="timeline1">1890</div>
+      <div class="timeline2">1910</div>
+      <div class="timeline3">1914-1918</div>
+      <div class="timeline4">1919</div>
+      <div class="timeline5">1920-1923</div>
+      <div class="timeline6">1924</div>
+      <img class="pembatas" src="Karakter img/pembatas.png" />
+      <a href="Karakter.html">
+      <div class="back">
+        <img class="tombol-back" src="Karakter img/back.png" />
+        </div>
+      </a>
+      <p class="quote">“The world doesn’t care about your pain. So you punch back.”</p>
     </div>
-</div>
+  </body>
+</html>

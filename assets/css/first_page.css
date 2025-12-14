@@ -1,0 +1,140 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+
+
+.desktop {
+  background: linear-gradient(
+    180deg,
+    rgba(87, 87, 84, 1) 13%,
+    rgba(56, 56, 55, 1) 37%,
+    rgba(25, 25, 22, 1) 67%
+  );
+  width: 100%;
+  min-width: 1440px;
+  min-height: 1024px;
+  position: relative; 
+  
+  overflow-x: hidden; 
+}
+
+
+
+.desktop .rectangle {
+  position: absolute;
+  top: 272px;
+  left: 167px;
+  width: 1106px;
+  height: 479px;
+}
+
+.desktop .pb-new-removebg {
+  position: absolute;
+  top: 83px;
+  left: 429px;
+  width: 1011px;
+  height: 687px;
+  aspect-ratio: 1.78;
+  object-fit: cover;
+}
+
+.desktop .element-removebg {
+  position: absolute;
+  top: 0;
+  left: 453px;
+  width: 754px;
+  height: 965px;
+  aspect-ratio: 0.75;
+  object-fit: cover;
+}
+
+.desktop .img {
+  position: absolute;
+  top: 97px;
+  left: 880px;
+  width: 754px;
+  height: 859px;
+  aspect-ratio: 0.57;
+}
+
+.desktop .cillian-murphy {
+  position: absolute;
+  top: 0;
+  left: 2px;
+  width: 710px;
+  height: 1020px;
+  aspect-ratio: 0.7;
+}
+
+.desktop .button-wrapper {
+  position: absolute;
+  top: 634px;
+  left: 229px;
+  display: flex;
+  gap: 20px; /* jarak antar tombol */
+}
+
+/* ================= TOMBOL GLOBAL ================= */
+.desktop .btn {
+  position: absolute;
+  top: 634px;
+  width: 136px;
+  height: 63px;
+  background-color: #38383780;
+  border-radius: 10px;
+  border: 1px solid #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* teks */
+.desktop .btn span {
+  font-family: "Lucida Fax", Helvetica;
+  font-size: 22px;
+  color: #e7c691;
+  letter-spacing: 2.2px;
+}
+
+/* ================= POSISI MANUAL ================= */
+.desktop .btn-signin {
+  left: 209px; /* GESER SENDIRI */
+}
+
+.desktop .btn-signup {
+  left: 385px; /* GESER SENDIRI */
+}
+
+/* ================= HOVER ================= */
+.desktop .btn:hover {
+  background-color: #e7c69120;
+  border-color: #e7c691;
+}
+
+.desktop .element-removebg-2 {
+  position: absolute;
+  top: 260px;
+  left: 72px;
+  width: 614px;
+  height: 345px;
+  aspect-ratio: 1.78;
+}

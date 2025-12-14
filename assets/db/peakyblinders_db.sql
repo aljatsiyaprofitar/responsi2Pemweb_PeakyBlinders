@@ -32,5 +32,21 @@ CREATE TABLE timeline (
 CREATE TABLE roleplay_char (
     rp_char_id INT(20) AUTO_INCREMENT PRIMARY KEY,
     avatar_image_url VARCHAR(255),
-    rp_char_name VARCHAR(100) NOT NULL
+    rp_char_name VARCHAR(100) NOT NULL,
+    high_score INT(20)
 );
+
+CREATE TABLE rp_mission(
+    mission_id INT(20) AUTO INCREMENT PRIMARY KEY,
+    op_text TEXT,
+    choices_text TEXT,
+    choice_one TEXT,
+    choice_two TEXT,
+    next_text1 TEXT,
+    next_text2 TEXT,
+    next_text3 TEXT,
+    gameover_quotes1 TEXT,
+    gameover_quotes2 TEXT,
+    gameover_quotes3 TEXT,
+    win_txt TEXT
+)

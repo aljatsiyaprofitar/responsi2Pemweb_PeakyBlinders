@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
 
     <!-- Link ke CSS eksternal -->
-    <link rel="stylesheet" href="assets/css/Start.css">
+    <link rel="stylesheet" href="assets/css/start.css">
   </head>
 
   <body>
