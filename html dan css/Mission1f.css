@@ -1,0 +1,197 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+
+
+.desktop {
+  background-color: #383837;
+  width: 100%;
+  min-width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1439px;
+  height: 123px;
+  background-color: #181815;
+}
+
+.nav-item-container {
+  position: absolute;
+  top: 50px;
+  height: 25px;
+}
+
+.nav-icon {
+  position: absolute;
+  width: 25px;
+  height: 20px;
+  filter: brightness(1.2);
+  top: -10;
+  left: 5px;
+}
+
+.nav-text {
+  position: absolute;
+  color: #e7c691;
+  font-size: 20px;
+  font-family: 'Lucida Fax', Helvetica;
+  letter-spacing: 1px;
+}
+
+.nav-home { left: 80px; width: 100px; }
+.home-text { left: 32px; }
+
+.nav-character { left: 205px; width: 140px; }
+.character-text { left: 35px; }
+
+.nav-roleplay { left: 377px; width: 160px; }
+.roleplay-text { left: 45px; }
+
+.nav-profile { left: 1075px; width: 120px; }
+.profile-text { left: 35px; }
+
+.nav-logout { left: 1250px; width: 120px; }
+.logout-text { left: 35px; }
+
+.nav-item-container:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.desktop .tanda {
+  position: absolute;
+  top: 32px;
+  left: 377px;
+  width: 150px;
+  height: 63px;
+  background-color: #e7c69126;
+  border-radius: 10px;
+  border: 1px solid;
+  border-color: #795934;
+}
+
+.desktop .background-tiang {
+  position: absolute;
+  top: 123px;
+  left: 0;
+  width: 549px;
+  height: 901px;
+  aspect-ratio: 0.61;
+}
+
+.desktop .background-topi {
+  position: absolute;
+  top: 710px;
+  left: 996px;
+  width: 444px;
+  height: 314px;
+  aspect-ratio: 1.41;
+}
+
+
+.desktop .rectangle-cerita {
+  position: absolute;
+  top: 210px;
+  left: 100px;
+  width: 1250px;
+  height: 750px;
+}
+
+.desktop .judul-cerita {
+  position: absolute;
+  top: 255px;
+  left: 155px;
+  font-family: "Metal Mania", Helvetica;
+  font-weight: 400;
+  color: #ecd4ae;
+  font-size: 50px;
+  letter-spacing: 7px;
+  line-height: normal;
+}
+
+.desktop .misi {
+  position: absolute;
+  top: 350px;
+  left: 150px;
+  width: 1100px;
+
+  font-family: "Lucida Fax", Helvetica;
+  font-size: 20px;
+  color: #ecd4ae;
+
+  line-height: 1.5;          
+  letter-spacing: 1.1px;     
+  text-align: left;       
+
+  white-space: normal;
+}
+
+.misi .quote {
+  margin: 25px 0;
+  font-family: "Lucida Fax", Helvetica;
+  text-align: left;
+  letter-spacing: 1.2px;
+  line-height: 2.5;
+  width: 200;
+}
+
+
+.desktop .pilihan1 {
+  position: absolute;
+  top: 840px;
+  left: 150px;
+  width: 500px;
+  height: 50px;
+}
+
+.desktop .pilihan2 {
+  position: absolute;
+  top: 840px;
+  left: 795px;
+  width: 500px;
+  height: 50px;
+}
+
+.desktop .text1 {
+  position: absolute;
+  top: 850px;
+  left: 175px;
+  font-family: "Lucida Fax Demibold", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.desktop .text2 {
+  position: absolute;
+  top: 850px;
+  left: 830px;
+  font-family: "Lucida Fax Demibold", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  line-height: normal;
+}
+
