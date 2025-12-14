@@ -1,4 +1,6 @@
-/* RESET */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@font-face { font-family: 'Lucida Fax'; src: local('Lucida Fax'), sans-serif; }
+
 html, body {
   margin: 0;
   padding: 0;
@@ -38,20 +40,21 @@ button:focus-visible {
 
 /* MAIN CONTAINER */
 .desktop {
-  background-color: #ffffff;
-  width: 100%;
-  min-width: 1440px;
-  height: 1024px;
   position: relative;
+  width: min(100vw, 140.625vh);
+  height: min(100vh, 71.11vw);
+  aspect-ratio: 1440 / 1024;
+  background: #191916;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
 }
-
 /* BACKGROUND IMAGE */
 .image {
   position: absolute;
   top: 0;
   left: 0;
-  width: 1440px;
-  height: 1024px;
+  width: 100%; 
+  height: 100%;
   aspect-ratio: 1.51;
   object-fit: cover;
 }
@@ -70,8 +73,9 @@ button:focus-visible {
 /* TITLE */
 .text-wrapper {
   position: absolute;
-  top: 203px;
-  left: 460px;
+  top: 20%; 
+  left: 50%; 
+  transform: translateX(-50%);
   font-family: 'Metal Mania', Helvetica;
   font-size: 60px;
   color: #e7c691;
@@ -80,8 +84,9 @@ button:focus-visible {
 /* SUBTEXT */
 .already-have-account {
   position: absolute;
-  top: 281px;
-  left: 570px;
+  top: 28%; 
+  left: 50%; 
+  transform: translateX(-50%);
   font-family: 'Lucida Fax', Helvetica;
   font-size: 23px;
   white-space: nowrap;

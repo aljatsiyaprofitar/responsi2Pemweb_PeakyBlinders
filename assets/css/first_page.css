@@ -43,7 +43,17 @@ a {
   height: 479px;
 }
 
-.desktop .pb-new-removebg {
+.desktop .background-judul {
+  position: absolute;
+  top: 260px;
+  left: 72px;
+  width: 614px;
+  height: 345px;
+  aspect-ratio: 1.78;
+}
+
+
+.desktop .thomas-gun {
   position: absolute;
   top: 83px;
   left: 429px;
@@ -53,7 +63,7 @@ a {
   object-fit: cover;
 }
 
-.desktop .element-removebg {
+.desktop .smoke-effect1 {
   position: absolute;
   top: 0;
   left: 453px;
@@ -63,7 +73,7 @@ a {
   object-fit: cover;
 }
 
-.desktop .img {
+.desktop .smoke-effect2 {
   position: absolute;
   top: 97px;
   left: 880px;
@@ -128,13 +138,4 @@ a {
 .desktop .btn:hover {
   background-color: #e7c69120;
   border-color: #e7c691;
-}
-
-.desktop .element-removebg-2 {
-  position: absolute;
-  top: 260px;
-  left: 72px;
-  width: 614px;
-  height: 345px;
-  aspect-ratio: 1.78;
 }

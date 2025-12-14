@@ -1,78 +1,88 @@
 <?php
-    session_start();
-    include 'config/koneksi.php';
+session_start();
+include 'config/koneksi.php';
 
-    if(isset($_SESSION['login_user'])){
-        header('Location: index.php');
-        exit();
-    }
-  
-    $error_msg = "";
+// Jika sudah login, lempar ke dashboard
+if(isset($_SESSION['login_user'])){
+    header('Location: start.php');
+    exit();
+}
 
-    if(isset($_POST['login'])){
-        $username = mysqli_real_escape_string($koneksi, $_POST['username']);
-        $password = $_POST['password'];
+$error_msg = "";
 
-        $query = "SELECT * FROM users WHERE username = '$username'";
-        $result = mysqli_query($koneksi, $query);
+if(isset($_POST['login'])){
+    $username = mysqli_real_escape_string($koneksi, $_POST['username']);
+    $password = $_POST['password'];
 
-        if(mysqli_num_rows($result) === 1){
-            $row = mysqli_fetch_assoc($result);
-            if(password_verify($password, $row['password'])) {
-                $_SESSION['login_user'] = true;
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['userbame'] = $row['username'];
-            header("location: index.php");
+    // Cari user berdasarkan username
+    $query = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($koneksi, $query);
+
+    if(mysqli_num_rows($result) === 1){
+        $row = mysqli_fetch_assoc($result);
+        
+        // Verifikasi Password Hash
+        if(password_verify($password, $row['password'])) {
+            // SET SESSION VARIABEL
+            $_SESSION['login_user'] = true;
+            $_SESSION['user_id'] = $row['id'];      // Kunci untuk data progress unik
+            $_SESSION['username'] = $row['username']; // (Perbaikan typo userbame)
+            
+            header("location: start.php");
             exit;
-            } else{
-                $error_msg = "Password Salah!";
-            }
         } else {
-            $error_msg = "Username tidak ditemukan!";
+            $error_msg = "Password Salah!";
         }
+    } else {
+        $error_msg = "Username tidak ditemukan!";
     }
+}
 ?>
 
 <!DOCTYPE html>
-<html lang="id">
-<head>
+<html>
+  <head>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta charset="utf-8" />
-    <title>Log In</title>
     <link rel="stylesheet" href="assets/css/login.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="desktop">
-        <img class="image" src="assets/img/login and regis/background sign in up.png" alt="Background" />
 
-        <div class="rectangle"></div>
+      <img class="image" src="assets/img/login and regis/background sign in up.png" />
 
-        <div class="text-wrapper">WELCOME BACK!</div>
+      <div class="rectangle"></div>
 
-        <p class="don-t-have-account">
-            <span class="span">Don’t have account.</span>
-            <a href="registrasi.php" class="text-wrapper-3">Sign up</a>
-        </p>
-        <form action="" method="POST">
-            <div class="label-username">Username</div>
-            <input type="text" name="name" class="input-field input-username" required />
+      <div class="text-wrapper">WELCOME BACK!</div>
 
-            <div class="label-password">Password</div>
-            <input type="password" name="password" class="input-field input-password" required /> 
+      <p class="don-t-have-account">
+        <span class="span">Don’t have account.</span>
+        <a href="registrasi.php" class="text-wrapper-3">Sign up</a>
+      </p>
 
-            <?php if($error_msg != ""): ?>
-                <div class="error-message" style="color: red; margin-top: 10px; font-size: 14px;"> 
-                    <?= $error_msg ?>
-                Username atau Password salah
-            </div>
-            <?php endif; ?>
-            
-            <button type="submit" name="login" id="btnSignIn">
-                <div class="btn-signin"></div>
-                <div class="label-btn-signin">Sign In</div>
-            </button>
-        </form>
+      <!-- INPUT USERNAME -->
+      <input type="text" class="input-field input-username" />
+
+      <!-- LABEL USERNAME -->
+      <div class="label-username">Username</div>
+
+      <!-- INPUT PASSWORD -->
+      <input type="password" class="input-field input-password" />
+
+      <!-- LABEL PASSWORD -->
+      <div class="label-password">Password</div>
+      <div class="error-message" id="errorMsg">
+        Username atau Password salah
+      </div>
+      <!-- BUTTON SIGN IN -->
+      <a href="start.php" id="btnSignIn">
+        <div class="btn-signin"></div>
+        <div class="label-btn-signin">Sign In</div>
+      </a>
     </div>
-</body>
+    <div class="error-message" id="errorMsg">
+      Harap isi username dan password terlebih dahulu!
+    </div>
+  </body>
 </html>

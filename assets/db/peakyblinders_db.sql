@@ -4,7 +4,7 @@ USE peakyblinders_db;
 
 CREATE TABLE users (
     id INT(11) AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100) NOT NULL,
+    username VARCHAR(100) NOT NULL UNIQUE,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -37,7 +37,7 @@ CREATE TABLE roleplay_char (
 );
 
 CREATE TABLE rp_mission(
-    mission_id INT(20) AUTO INCREMENT PRIMARY KEY,
+    mission_id INT(20) AUTO_INCREMENT PRIMARY KEY,
     op_text TEXT,
     choices_text TEXT,
     choice_one TEXT,
