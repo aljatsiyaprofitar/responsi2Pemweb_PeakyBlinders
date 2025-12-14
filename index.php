@@ -13,7 +13,7 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Peaky Blinders Fanpage</title>
-    <link rel="stylesheet" href="assets/css/style.css"> 
+    <link rel="stylesheet" href="assets/css/index.css"> 
 </head>
 <body>
 
@@ -38,8 +38,7 @@ if (!isset($_SESSION['username'])) {
                 WELCOME TO BIRMINGHAM, <?= strtoupper(htmlspecialchars($_SESSION['username'])); ?>
             </h1>            
             <blockquote class="hero-quote">
-                "I'm not a traitor to my class. I am just an extreme example of what a working man can achieve."                <footer>— <?= htmlspecialchars($quoteAuthor); ?></footer>
-            </blockquote>
+                "I'm not a traitor to my class. I am just an extreme example of what a working man can achieve."
         </div>
     </header>
 

@@ -10,37 +10,69 @@
     $error_msg = "";
 
     if(isset($_POST['login'])){
-        $email = mysqli_real_escape_string($koneksi, $_POST['email']);
+        $username = mysqli_real_escape_string($koneksi, $_POST['username']);
         $password = $_POST['password'];
 
-        $query = "SELECT * FROM users WHERE email = '$email'";
+        $query = "SELECT * FROM users WHERE username = '$username'";
         $result = mysqli_query($koneksi, $query);
 
         if(mysqli_num_rows($result) === 1){
             $row = mysqli_fetch_assoc($result);
-
             if(password_verify($password, $row['password'])) {
-
                 $_SESSION['login_user'] = true;
                 $_SESSION['user_id'] = $row['id'];
-                $_SESSION['fullname'] = $row['username'];
-            
+                $_SESSION['userbame'] = $row['username'];
             header("location: index.php");
             exit;
-
             } else{
                 $error_msg = "Password Salah!";
             }
-            
         } else {
-            $error_msg = "Email tidak ditemukan!";
+            $error_msg = "Username tidak ditemukan!";
         }
     }
-
 ?>
 
 <!DOCTYPE html>
-<html>
-    <head>
-    </head>
+<html lang="id">
+<head>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta charset="utf-8" />
+    <title>Log In</title>
+    <link rel="stylesheet" href="assets/css/login.css" />
+</head>
+
+<body>
+    <div class="desktop">
+        <img class="image" src="assets/img/login and regis/background sign in up.png" alt="Background" />
+
+        <div class="rectangle"></div>
+
+        <div class="text-wrapper">WELCOME BACK!</div>
+
+        <p class="don-t-have-account">
+            <span class="span">Don’t have account.</span>
+            <a href="registrasi.php" class="text-wrapper-3">Sign up</a>
+        </p>
+        <form action="" method="POST">
+            <div class="label-username">Username</div>
+            <input type="text" name="name" class="input-field input-username" required />
+
+            <div class="label-password">Password</div>
+            <input type="password" name="password" class="input-field input-password" required /> 
+
+            <?php if($error_msg != ""): ?>
+                <div class="error-message" style="color: red; margin-top: 10px; font-size: 14px;"> 
+                    <?= $error_msg ?>
+                Username atau Password salah
+            </div>
+            <?php endif; ?>
+            
+            <button type="submit" name="login" id="btnSignIn">
+                <div class="btn-signin"></div>
+                <div class="label-btn-signin">Sign In</div>
+            </button>
+        </form>
+    </div>
+</body>
 </html>
