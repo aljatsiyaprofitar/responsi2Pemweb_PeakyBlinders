@@ -19,7 +19,7 @@ function getCharacterById($id) {
     
     $id = intval($id); 
     
-    $query = "SELECT * FROM characters WHERE id = $id";
+    $query = "SELECT * FROM characters WHERE char_id = $id";
     $result = mysqli_query($koneksi, $query);
     
     return mysqli_fetch_assoc($result);
@@ -30,7 +30,7 @@ function getCharacterTimeline($character_id) {
     
     $character_id = intval($character_id);
     
-    $query = "SELECT * FROM life_paths WHERE character_id = $character_id ORDER BY display_order ASC";
+    $query = "SELECT * FROM timeline WHERE character_id = $character_id ORDER BY display_order ASC";
     $result = mysqli_query($koneksi, $query);
     
     $rows = [];

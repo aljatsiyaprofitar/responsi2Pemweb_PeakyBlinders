@@ -1,4 +1,4 @@
-CREATE DATABSE peakyblinders_db;
+CREATE DATABASE peakyblinders_db;
 
 USE peakyblinders_db;
 
@@ -20,7 +20,7 @@ CREATE TABLE characters (
     image_url VARCHAR(255)
 );
 
-CREATE TABLE timelline (
+CREATE TABLE timeline (
     time_id INT(20) AUTO_INCREMENT PRIMARY KEY,
     character_id INT NOT NULL,
     year_period VARCHAR(50),
@@ -31,5 +31,6 @@ CREATE TABLE timelline (
 
 CREATE TABLE roleplay_char (
     rp_char_id INT(20) AUTO_INCREMENT PRIMARY KEY,
-    rp_char_name VARCHAR(100) NOT NULL,
+    avatar_image_url VARCHAR(255),
+    rp_char_name VARCHAR(100) NOT NULL
 );

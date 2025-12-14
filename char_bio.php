@@ -1,11 +1,13 @@
 <?php
 require 'includes/functions.php';
 
-$id = $_GET['id'] ?? 1; 
+$id = $_GET['id'] ?? 0; 
 $character = getCharacterById($id);
-$timeline = getCharacterTimeline($id);
-
-if (!$character) { die("Character not found."); }
+if (!$character) {
+    echo "Karakter tidak ditemukan!";
+    exit;
+}
+$timeline = getCharacterTimeline($character['char_id']);
 ?>
 
 <div class="detail-container">
@@ -16,10 +18,10 @@ if (!$character) { die("Character not found."); }
     <div class="bio-content">
         <h1><?= $character['name']; ?></h1>
         <blockquote class="quote">
-            "<?= $character['quote']; ?>"
+            "<?= htmlspecialchars($character['quotes']); ?>"
         </blockquote>
         <p class="long-desc">
-            <?= nl2br(htmlspecialchars($character['long_description'])); ?>
+            <?= nl2br(htmlspecialchars($character['long_desc'])); ?>
         </p>
     </div>
 </div>
@@ -30,8 +32,8 @@ if (!$character) { die("Character not found."); }
     <div class="timeline-container">
         <?php foreach ($timeline as $event): ?>
             <div class="timeline-item">
-                <div class="year"><?= $event['year_period']; ?></div>
-                <div class="event-desc"><?= $event['event_description']; ?></div>
+                <div class="year"><?= htmlspecialchars($event['year_period']); ?></div>
+                <div class="event-desc"><?= htmlspecialchars($event['event_description']); ?></div>
             </div>
             <?php endforeach; ?>
     </div>
