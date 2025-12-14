@@ -1,0 +1,193 @@
+/* RESET */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font: inherit;
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+
+/* MAIN CONTAINER */
+.desktop {
+  background-color: #ffffff;
+  width: 100%;
+  min-width: 1440px;
+  height: 1024px;
+  position: relative;
+}
+
+/* BACKGROUND IMAGE */
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 1024px;
+  aspect-ratio: 1.51;
+  object-fit: cover;
+}
+
+/* BACKGROUND PANEL */
+.rectangle {
+  position: absolute;
+  top: 127px;
+  left: 228px;
+  width: 983px;
+  height: 770px;
+  background-color: #261f17e6;
+  border-radius: 30px;
+}
+
+/* TITLE */
+.text-wrapper {
+  position: absolute;
+  top: 203px;
+  left: 460px;
+  font-family: 'Metal Mania', Helvetica;
+  font-size: 60px;
+  color: #e7c691;
+}
+
+/* SUBTEXT */
+.already-have-account {
+  position: absolute;
+  top: 281px;
+  left: 570px;
+  font-family: 'Lucida Fax', Helvetica;
+  font-size: 23px;
+  white-space: nowrap;
+  color: transparent;
+}
+
+.span {
+  color: #ffffff;
+}
+
+.text-wrapper-3 {
+  color: #e7c693;
+}
+
+/* INPUT FIELDS (STYLE SAMA UNTUK SEMUA) */
+.input-field {
+  width: 501px;
+  height: 53px;
+  background-color: #261f17;
+  border-radius: 90px;
+  border: 3px dashed #e7c693;
+  position: absolute;
+
+  /* TEKS INPUT */
+  color: #ffffff;
+  font-size: 22px;
+  font-family: 'Lucida Fax', Helvetica;
+  padding-left: 20px;
+}
+
+/* POSISI INPUT */
+.input-email {
+  top: 404px;
+  left: 470px;
+}
+
+.input-username {
+  top: 518px;
+  left: 468px;
+}
+
+.input-password {
+  top: 634px;
+  left: 468px;
+}
+
+/* LABELS */
+.label-email,
+.label-username,
+.label-password {
+  position: absolute;
+  font-family: 'Lucida Fax', Helvetica;
+  font-size: 22px;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.label-email {
+  top: 365px;
+  left: 484px;
+}
+
+.label-username {
+  top: 480px;
+  left: 483px;
+}
+
+.label-password {
+  top: 595px;
+  left: 483px;
+}
+
+/* SIGN UP BUTTON */
+.btn-signup {
+  position: absolute;
+  top: 744px;
+  left: 580px;
+  width: 278px;
+  height: 50px;
+  background-color: #795934;
+  border-radius: 90px;
+  border: 1px solid #e7c693;
+}
+
+.label-btn-signup {
+  position: absolute;
+  top: 754px;
+  left: 682px;
+  font-family: 'Lucida Fax', Helvetica;
+  font-size: 22px;
+  color: #e7c691;
+  white-space: nowrap;
+}
+
+.error-message {
+  position: absolute;
+  top: 710px; /* sesuaikan posisi */
+  left: 0;
+  right: 0;
+  text-align: center;
+
+  font-family: "Lucida Fax", Helvetica;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: #ff0000;
+
+  display: none;
+}
+
