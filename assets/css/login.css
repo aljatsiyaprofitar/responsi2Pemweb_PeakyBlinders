@@ -1,201 +1,155 @@
-/* RESET + GLOBAL */
+@font-face {
+    font-family: "Lucida Fax";
+    /* Pastikan path font benar dari folder css */
+    src: url('../Font/LucidaFax.TTF'); 
+}
+
+@font-face {
+    font-family: "Metal mania";
+    src: url('../Font/MetalMania.ttf'); 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  font: inherit;
-  font-size: 100%;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    font-family: "Lucida Fax", Helvetica, serif;
+    overflow: hidden;
+    /* Flexbox untuk menengahkan seluruh konten di layar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Background Image */
+    background: url('../img/login and regis/background sign in up.png') no-repeat center center;
+    background-size: cover;
 }
 
-*, *:before, *:after {
-  box-sizing: inherit;
+/* Container utama (KOTAK COKELAT) */
+.login-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* Menengahkan Kiri-Kanan */
+    justify-content: center; /* Menengahkan Atas-Bawah (INI KUNCINYA) */
+    width: 983px;
+    height: 770px;
+    border-radius: 30px;
+    background-color: #261f17e6; /* Warna cokelat transparan */
 }
 
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
+/* Judul "WELCOME BACK!" */
+.text-title {
+    font-size: 60px;
+    color: #e7c691;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px #000;
+    text-align: center;
+    font-family: "Metal mania", serif;
 }
 
-ol, ul {
-  list-style: none;
+/* Link "Don't have account" */
+.text-signup {
+    font-size: 23px; 
+    color: #ffffff;
+    margin-bottom: 70px;
+    font-family: "Lucida Fax", Helvetica;
+    text-align: center;
 }
 
-blockquote, q {
-  quotes: none;
+.text-signup a {
+    color: #e7c693; 
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 5px;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+/* Form Container */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px; 
 }
 
-button:focus-visible {
-  outline: 2px solid #4a90e2 !important;
-  outline: -webkit-focus-ring-color auto 5px !important;
+/* Grouping Label & Input */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 504px; 
 }
 
-a {
-  text-decoration: none;
+.input-group label {
+    color: #ffffff;
+    font-size: 22px;
+    font-family: "Lucida Fax", Helvetica, serif;
+    padding-left: 20px; 
+    margin-bottom: 15px; 
+    text-shadow: 1px 1px 2px #000;
 }
 
-/* MAIN WRAPPER */
-.desktop {
-  background-color: #ffffff;
-  width: 100%;
-  min-width: 1440px;
-  height: 1024px;
-  position: relative;
-}
-
-/* BACKGROUND IMAGE */
-.image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1440px;
-  height: 1024px;
-  aspect-ratio: 1.51;
-  object-fit: cover;
-}
-
-/* MAIN CARD */
-.rectangle {
-  position: absolute;
-  top: 127px;
-  left: 228px;
-  width: 983px;
-  height: 770px;
-  background-color: #261f17e6;
-  border-radius: 30px;
-}
-
-/* TITLE */
-.text-wrapper {
-  position: absolute;
-  top: 223px;
-  left: 530px;
-  font-family: "Metal Mania", Helvetica;
-  color: #e7c691;
-  font-size: 60px;
-}
-
-/* SUBTEXT */
-.don-t-have-account {
-  position: absolute;
-  top: 297px;
-  left: 559px;
-  font-family: "Lucida Fax", Helvetica;
-  font-size: 23px;
-  color: transparent;
-  white-space: nowrap;
-}
-
-.span {
-  color: #ffffff;
-}
-
-.text-wrapper-3 {
-  color: #e7c693;
-}
-
-/* INPUT FIELD (username & password) */
+/* Styling Input */
 .input-field {
-  position: absolute;
-  width: 501px;
-  height: 53px;
-  background-color: #261f17;
-  border-radius: 90px;
-  border: 3px dashed #e7c693;
-
-  /* INI AGAR TEKS SAMA */
-  color: #ffffff; 
-  font-size: 22px;
-  font-family: "Lucida Fax", Helvetica;
-  padding-left: 20px;
+    width: 504px;
+    height: 50px;
+    background-color: #261f17;
+    border-radius: 90px;
+    border: 3px dashed #e7c693; 
+    padding: 0 25px;
+    font-size: 18px;
+    font-family: "Lucida Fax", Helvetica, serif;
+    color: #ffffff;  /* <--- Teks input sekarang berwarna PUTIH */
+    outline: none;
+    transition: 0.3s;
 }
 
-/* POSISI INPUT USERNAME */
-.input-username {
-  top: 422px;
-  left: 470px;
+.input-field:focus {
+    border-color: #e7c693;
+    box-shadow: 0 0 8px rgba(231, 198, 147, 0.5);
 }
 
-/* POSISI INPUT PASSWORD */
-.input-password {
-  top: 572px;
-  left: 470px;
+/* Tombol Sign In */
+.btn-submit {
+    width: 278px;
+    height: 50px;
+    background-color: #795934;
+    border-radius: 90px;
+    border: 1px solid #e7c693; 
+    color: #ffffff;
+    font-size: 20px; 
+    font-family: "Lucida Fax", Helvetica, serif;
+    cursor: pointer;
+    margin-top: 30px; 
+    transition: transform 0.2s;
 }
 
-/* SIGN IN BUTTON */
-.btn-signin {
-  position: absolute;
-  top: 729px;
-  left: 582px;
-  width: 278px;
-  height: 50px;
-  background-color: #795934;
-  border-radius: 90px;
-  border: 1px solid #e7c693;
+.btn-submit:hover {
+    transform: scale(1.05);
+    background-color: #6b4e2d;
 }
 
+/* Pesan Error */
 .error-message {
-  position: absolute; 
-  top: 700px;        
-  left: 0;
-  right: 0;
-  text-align: center;
-
-  font-family: "Lucida Fax", Helvetica;
-  font-size: 18px;
-  letter-spacing: 1.5px;
-  color: #ff0000;
-
-  display: none;
+    position: absolute;
+    top: 30px; /* Posisikan error di dalam box bagian atas */
+    background: rgba(180, 0, 0, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #ff4d4d;
+    font-size: 16px;
+    animation: fadeIn 0.5s;
+    z-index: 10;
 }
 
-/* LABELS */
-.label-username {
-  position: absolute;
-  top: 384px;
-  left: 484px;
-  font-family: "Lucida Fax", Helvetica;
-  color: #ffffff;
-  font-size: 22px;
-}
-
-.label-password {
-  position: absolute;
-  top: 534px;
-  left: 485px;
-  font-family: "Lucida Fax", Helvetica;
-  color: #ffffff;
-  font-size: 22px;
-}
-
-.error-message {
-  position: absolute;
-  top: 670px; 
-  left: 0;
-  right: 0;
-  text-align: center;
-
-  font-family: "Lucida Fax", Helvetica;
-  font-size: 18px;
-  letter-spacing: 1.5px;
-  color: #ff0000;
-
-  display: none;
-}
-
-/* SIGN IN TEXT INSIDE BUTTON */
-.label-btn-signin {
-  position: absolute;
-  top: 739px;
-  left: 684px;
-  font-family: "Lucida Fax", Helvetica;
-  color: #e7c691;
-  font-size: 22px;
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }

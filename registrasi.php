@@ -1,101 +1,83 @@
 <?php
-// Pastikan path koneksi benar
-require 'config/koneksi.php'; 
+require 'config/koneksi.php';
 
-$error_msg = "";
-$success_msg = "";
-
-// Cek koneksi database (Debugging)
-if (!$koneksi) {
-    die("Koneksi Database Gagal: " . mysqli_connect_error());
-}
+$error = '';
+$success = '';
 
 if (isset($_POST['register'])) {
     $email = mysqli_real_escape_string($koneksi, $_POST['email']);
     $username = mysqli_real_escape_string($koneksi, $_POST['username']);
     $password = $_POST['password'];
 
-    // Validasi sederhana
-    if (empty($email) || empty($username) || empty($password)) {
-        $error_msg = "Semua kolom wajib diisi!";
+    // Cek apakah Username atau Email sudah terdaftar
+    $check = mysqli_query($koneksi, "SELECT * FROM users WHERE username = '$username' OR email = '$email'");
+    
+    if (mysqli_num_rows($check) > 0) {
+        $error = "Username atau Email sudah terdaftar!";
     } else {
-        // Cek apakah username/email sudah ada
-        $cek_user = mysqli_query($koneksi, "SELECT * FROM users WHERE email = '$email' OR username = '$username'");
+        // Hashing Password
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
         
-        if (mysqli_num_rows($cek_user) > 0) {
-            $error_msg = "Username atau Email sudah terdaftar!";
+        // Simpan ke Database
+        $query = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$password_hash')";
+        
+        if (mysqli_query($koneksi, $query)) {
+            $success = true;
         } else {
-            // Hash Password
-            $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-            // Query Insert dengan Error Handling
-            $query = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password_hash')";
-            
-            if (mysqli_query($koneksi, $query)) {
-                echo "<script>
-                        alert('Registrasi Berhasil! Silakan Login.');
-                        document.location.href = 'login.php';
-                      </script>";
-                exit;
-            } else {
-                // Tampilkan error SQL jika gagal (Penting untuk debugging)
-                $error_msg = "Gagal mendaftar: " . mysqli_error($koneksi);
-            }
+            $error = "Gagal mendaftar: " . mysqli_error($koneksi);
         }
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
-    <title>Sign Up - Peaky Blinders</title>
-    <link rel="stylesheet" href="assets/css/regis.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="assets/css/login.css">
 </head>
-
 <body>
-    <div class="desktop">
-        <img class="image" src="assets/img/login and regis/background sign in up.png" alt="Background" />
+    
+    <div class="login-wrapper">
+        <?php if($error): ?>
+            <div class="error-message"><?= $error ?></div>
+        <?php endif; ?>
+        
+        <?php if($success): ?>
+            <script>
+                alert("Pendaftaran Berhasil! Silakan Login.");
+                window.location.href = 'login.php';
+            </script>
+        <?php endif; ?>
 
-        <div class="rectangle-overlay"></div>
-
-        <div class="container-form">
-            <div class="text-wrapper">CREATE NEW ACCOUNT</div>
-
-            <p class="already-have-account">
-                <span class="span">Already have account. </span>
-                <a href="login.php" class="text-link">Sign in</a>
-            </p>
-
-            <form action="" method="POST" class="form-register">
-                <div class="input-group">
-                    <label>Email Address</label>
-                    <input type="email" name="email" class="input-field" required autocomplete="off" />
-                </div>
-                
-                <div class="input-group">
-                    <label>Username</label>
-                    <input type="text" name="username" class="input-field" required autocomplete="off" />
-                </div>
-
-                <div class="input-group">
-                    <label>Create Password</label>
-                    <input type="password" name="password" class="input-field" required />
-                </div>
-
-                <?php if($error_msg): ?>
-                    <div class="error-message">
-                        <?= $error_msg ?>
-                    </div>
-                <?php endif; ?>
-
-                <button type="submit" name="register" class="btn-signup">
-                    <span>Sign up</span>
-                </button>
-            </form>
+        <div class="text-title">CREATE NEW ACCOUNT</div>
+        
+        <div class="text-signup">
+            <span>Already have account?</span>
+            <a href="login.php">Sign in</a>
         </div>
+
+        <form action="" method="POST">
+            <div class="input-group">
+                <label>Email Address</label>
+                <input type="email" name="email" class="input-field" required autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" class="input-field" required autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <label>Create Password</label>
+                <input type="password" name="password" class="input-field" required>
+            </div>
+
+            <button type="submit" name="register" class="btn-submit">Sign Up</button>
+        </form>
     </div>
+
 </body>
 </html>
