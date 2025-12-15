@@ -4,7 +4,7 @@ include 'config/koneksi.php';
 
 // Jika sudah login, lempar ke dashboard
 if(isset($_SESSION['login_user'])){
-    header('Location: start.php');
+    header('Location: index.php');
     exit();
 }
 
@@ -28,7 +28,7 @@ if(isset($_POST['login'])){
             $_SESSION['user_id'] = $row['id'];      // Kunci untuk data progress unik
             $_SESSION['username'] = $row['username']; // (Perbaikan typo userbame)
             
-            header("location: start.php");
+            header("location: start..php");
             exit;
         } else {
             $error_msg = "Password Salah!";
@@ -44,45 +44,43 @@ if(isset($_POST['login'])){
   <head>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="assets/css/login.css" />
+    <link rel="stylesheet" href="SignUp.css" />
   </head>
 
   <body>
     <div class="desktop">
 
-      <img class="image" src="assets/img/login and regis/background sign in up.png" />
+      <img class="image" src="Sign In and Up img/background sign in up.png" />
 
       <div class="rectangle"></div>
 
-      <div class="text-wrapper">WELCOME BACK!</div>
+      <div class="text-wrapper">CREATE NEW ACCOUNT</div>
 
-      <p class="don-t-have-account">
-        <span class="span">Don’t have account.</span>
-        <a href="registrasi.php" class="text-wrapper-3">Sign up</a>
+      <p class="already-have-account">
+        <span class="span">Already have account.</span>
+        <a href="SignIn.html" class="text-wrapper-3">Sign in</a>
       </p>
+
+      <!-- INPUT EMAIL -->
+      <input type="email" class="input-field input-email" />
+      <div class="label-email">Email Address</div>
 
       <!-- INPUT USERNAME -->
       <input type="text" class="input-field input-username" />
-
-      <!-- LABEL USERNAME -->
       <div class="label-username">Username</div>
 
       <!-- INPUT PASSWORD -->
       <input type="password" class="input-field input-password" />
+      <div class="label-password">Create Password</div>
 
-      <!-- LABEL PASSWORD -->
-      <div class="label-password">Password</div>
-      <div class="error-message" id="errorMsg">
-        Username atau Password salah
-      </div>
-      <!-- BUTTON SIGN IN -->
-      <a href="start.php" id="btnSignIn">
-        <div class="btn-signin"></div>
-        <div class="label-btn-signin">Sign In</div>
+      <!-- BUTTON SIGN UP -->
+      <a href="SignIn.html" id="btnSignUp">
+        <div class="btn-signup"></div>
+        <div class="label-btn-signup">Sign up</div>
       </a>
-    </div>
-    <div class="error-message" id="errorMsg">
-      Harap isi username dan password terlebih dahulu!
+      <div class="error-message" id="errorMsg">
+        Harap isi email, username, dan password terlebih dahulu!
+      </div>
     </div>
   </body>
 </html>

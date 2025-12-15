@@ -14,7 +14,7 @@ if (!isset($_SESSION['login_user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>Welcome to Birmingham</title>
-    <link rel="stylesheet" href="assets/css/start.css" />
+    <link rel="stylesheet" href="assets/css/Start.css" />
 </head>
 <body>
     <div class="desktop">

@@ -1,138 +1,170 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@font-face {
+    font-family: 'Lucida Fax';
+    src: local('Lucida Fax'), local('LucidaFax'), sans-serif;
 }
 
-/* BODY */
 body {
-  font-size: 100%;
-  line-height: 1;
-  height: 100%;
-}
-
-/* CONTAINER */
-.desktop {
-  background-color: #383837;
+  margin: 0; padding: 0; width: 100%; height: 100%;
+  background-color: #191916;
+  display: flex; justify-content: center; align-items: center;
+  font-family: 'Lucida Fax', serif;
   overflow: hidden;
-  width: 100%;
-  min-width: 1440px;
-  height: 1024px;
+}
+
+/* Container Utama (Rasio Terkunci 1440x1024) */
+.desktop {
   position: relative;
+  width: min(100vw, 140.625vh);
+  height: min(100vh, 71.11vw);
+  aspect-ratio: 1440 / 1024;
+  background: #191916;
+  overflow: hidden;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
 }
 
-/* ALL IMAGE POSITIONS */
-.background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1440px;
-  height: 1024px;
-}
+/* --- LAYER GAMBAR --- */
 
-.ada-thorne {
+/* 1. Background */
+.background-img {
   position: absolute;
-  top: 545px;
-  left: 1px;
-  width: 345px;
-  height: 479px;
-}
-
-.arthur-shelby {
-  position: absolute;
-  top: 430px;
-  left: 202px;
-  width: 458px;
-  height: 594px;
-}
-
-.polly-gray {
-  position: absolute;
-  top: 478px;
-  left: 431px;
-  width: 579px;
-  height: 546px;
-}
-
-.thomas-shelby {
-  position: absolute;
-  top: 108px;
-  left: 863px;
-  width: 577px;
-  height: 901px;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   object-fit: cover;
+  z-index: 1;
 }
 
-/* === STYLING UNTUK JUDUL BARU (Ganti .welcome-aljatsiya) === */
-.page-title {
+/* 2. Karakter 
+   Posisi menggunakan % agar responsif.
+   Z-index menentukan siapa di depan siapa.
+*/
+
+/* Arthur (Kiri Belakang) */
+.char-arthur {
   position: absolute;
-  /* Posisi yang disesuaikan agar terlihat sentral di bagian atas */
-  top: 70px; 
-  left: 90px;
-  right: 0;
+  bottom: 0;       /* Menempel di bawah */
+  left: 5%;        /* Agak ke kiri */
+  height: 85%;     /* Tinggi relatif terhadap layar */
+  width: auto;
+  z-index: 2;
+  filter: drop-shadow(10px 10px 20px rgba(0,0,0,0.7)); /* Bayangan agar menyatu */
+}
+
+/* Ada Thorne (Kanan Belakang) */
+.char-ada {
+  position: absolute;
+  bottom: 0;
+  right: 8%;
+  height: 82%;
+  width: auto;
+  z-index: 2;
+  filter: drop-shadow(-10px 10px 20px rgba(0,0,0,0.7));
+}
+
+/* Polly Gray (Agak Tengah Kiri) */
+.char-polly {
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  height: 88%;
+  width: auto;
+  z-index: 3; /* Di depan Arthur */
+  filter: brightness(0.9); /* Sedikit lebih gelap agar fokus ke Thomas */
+}
+
+/* Thomas Shelby (Center Depan - The Boss) */
+.char-thomas {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /* Trik agar pas di tengah horizontal */
+  height: 95%;     /* Paling besar */
+  width: auto;
+  z-index: 4;      /* Paling depan */
+  filter: drop-shadow(0 0 30px rgba(0,0,0,0.8));
+}
+
+/* --- UI ELEMENTS --- */
+
+/* Text Container */
+.welcome-container {
+  position: absolute;
+  top: 10%;
+  width: 100%;
   text-align: center;
-  width: 100px;
-  /* Styling Font Sesuai Permintaan */
-  font-size: 140px; /* Ukuran disesuaikan agar lebih proporsional */
-  color: #ffffff; /* Menggunakan warna yang sama dengan tombol START */
-  font-family: 'Metal Mania', Helvetica;
-  text-shadow: 4px 4px 10px #261f17; /* Memberi bayangan agar lebih menonjol */
-  letter-spacing: 5px;
+  z-index: 10;
 }
 
-.rectangle {
+.welcome-text {
+  font-size: 3vw; /* Ukuran font ikut lebar layar */
+  color: #E7C691; /* Warna Emas Peaky Blinders */
+  letter-spacing: 0.3em;
+  font-weight: bold;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.9);
+  margin-bottom: 1vh;
+}
+
+.username-text {
+  font-size: 2vw;
+  color: #fff;
+  letter-spacing: 0.1em;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.9);
+}
+
+/* Tombol START / ENTER */
+.btn-start {
   position: absolute;
-  top: 872px;
-  left: 566px;
-  width: 310px;
-  height: 93px;
-  background-color: #383837b2;
-  border-radius: 10px;
-  border: 1px solid #fbddaf;
-}
-
-.text-wrapper {
-  position: absolute;
-  top: 900px;
-  left: 657px;
-  font-family: 'Lucida Fax', Helvetica;
-  color: #fbdeb0;
-  font-size: 32px;
-  letter-spacing: 3.2px;
-}
-
-.start-link {
+  bottom: 8%;      /* Posisi di bawah kaki karakter */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 15vw;
+  height: 4vw;
+  min-width: 150px;
+  min-height: 50px;
+  
+  background: rgba(25, 25, 22, 0.9);
+  border: 2px solid #E7C691;
+  color: #E7C691;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
   text-decoration: none;
-  color: inherit;
-  position: absolute;
-  top: 0;
-  left: 0;
+  font-size: 1.5vw;
+  font-weight: bold;
+  letter-spacing: 0.2em;
+  z-index: 20; /* Di atas segalanya */
+  
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
 }
 
-.vector-2 {
-  position: absolute;
-  width: 3.82%;
-  height: 3.71%;
-  top: -230.66%;
-  left: 44.31%;
+.btn-start:hover {
+  background: #E7C691;
+  color: #191916;
+  box-shadow: 0 0 30px #E7C691;
+  transform: translateX(-50%) scale(1.05);
 }
 
-.vector-3 {
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: -229.59%;
-  left: 46.67%;
-}
-
-.vector-4 {
-  position: absolute;
-  width: 3.68%;
-  height: 5.08%;
-  top: -249.22%;
-  left: 72.29%;
+/* Media Query untuk HP (Portrait) agar karakter tidak tumpang tindih aneh */
+@media (max-aspect-ratio: 1/1) {
+  .char-arthur, .char-ada {
+    opacity: 0.5; /* Pudarkan karakter samping di HP */
+  }
+  .char-thomas {
+    height: 80%; /* Perkecil sedikit */
+  }
+  .welcome-text {
+    font-size: 6vw;
+    margin-top: 5vh;
+  }
+  .btn-start {
+    width: 40vw;
+    height: 8vh;
+    font-size: 4vw;
+    bottom: 15%;
+  }
 }
