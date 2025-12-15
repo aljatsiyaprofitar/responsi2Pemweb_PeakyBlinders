@@ -1,3 +1,7 @@
+Al Jatsiya Profitar Taqwala - H1D024095
+Muhammad Hudzayfa Ismail - H1D024082
+Talitha Maharani Nashier - H1D024098
+
 # 🥃 Peaky Blinders Web App
 
 > *"By order of the Peaky Blinders."*
