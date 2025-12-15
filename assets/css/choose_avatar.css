@@ -1,3 +1,21 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+/* FONTS */
+@font-face {
+    font-family: 'Metal Mania';
+    src: local('Metal Mania'), url('../Font/MetalMania.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lucida Fax';
+    src: local('Lucida Fax'), url('../Font/LucidaFax.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lucida Sans';
+    src: local('Lucida Sans'), url('../Font/LucidaSansUnicode.ttf') format('truetype');
+}
+
 /* RESET */
 * {
     margin: 0;
@@ -10,86 +28,82 @@ a { text-decoration: none; color: inherit; }
 
 /* LAYOUT */
 .desktop {
-    width: 1440px;
-    height: 1024px;
     background-color: #383837;
     position: relative;
-    margin: 0 auto;
+    width: 100%;
+    min-height: 100vh;
     overflow: hidden;
 }
 
 /* HEADER */
 .header {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 1439px;
+  top: 0; left: 0;
+  width: 100%;
   height: 123px;
   background-color: #181815;
+  border-bottom: 1px solid #5d5d5d;
+  z-index: 10;
 }
 
 /* NAVIGATION */
 .nav-item-container {
   position: absolute;
   top: 50px;
-  height: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  z-index: 20;
+  transition: opacity 0.3s;
 }
+.nav-item-container:hover { opacity: 0.8; }
+
 .nav-icon {
-  position: absolute;
-  width: 25px;
-  height: 20px;
+  position: relative;
+  width: 25px; height: 25px;
+  object-fit: contain;
   filter: brightness(1.2);
-  top: -10;
-  left: 5px;
 }
 
 .nav-text {
-  position: absolute;
+  position: relative;
   color: #e7c691;
   font-size: 20px;
   font-family: 'Lucida Fax', Helvetica;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 
-/* NAV POSISI */
-.nav-home { left: 80px; width: 100px; }
-.home-text { left: 32px; }
+.nav-home { left: 80px; }
+.nav-character { left: 205px; }
+.nav-roleplay { left: 377px; }
 
-.nav-character { left: 205px; width: 140px; }
-.character-text { left: 35px; }
-
-.nav-roleplay { left: 377px; width: 160px; }
-.roleplay-text { left: 45px; }
-
-.nav-profile { left: 1075px; width: 120px; }
-.profile-text { left: 35px; }
-
-.nav-logout { left: 1250px; width: 120px; }
-.logout-text { left: 35px; }
+/* Navigasi Kanan */
+.nav-profile { right: 200px; flex-direction: row-reverse; }
+.nav-logout { right: 50px; }
 
 /* ACTIVE ROLEPLAY */
 .tanda {
     position: absolute;
-    top: 32px;
-    left: 373px;
-    width: 150px;
-    height: 63px;
-    background-color: #e7c69126;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px; height: 63px;
+    background-color: #e7c69126; 
     border-radius: 10px;
     border: 1px solid #795934;
-}
-
-/* HOVER NAV */
-.nav-item-container:hover {
-    opacity: 0.85;
-    transform: translateY(-1px);
+    z-index: -1;
 }
 
 /* BACKGROUND */
 .background {
     position: absolute;
-    mix-blend-mode: luminosity;
-    pointer-events: none;
+    top: 225px;
+    left: 329px;
+    width: 749px;
+    height: 730px;
+    z-index: 0;
+    opacity: 0.6;
 }
 
 .atas-kiri {
