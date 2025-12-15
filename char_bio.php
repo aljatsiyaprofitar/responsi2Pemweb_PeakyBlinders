@@ -1,13 +1,43 @@
 <?php
-require 'includes/functions.php';
+session_start();
 
-$id = $_GET['id'] ?? 0; 
-$character = getCharacterById($id);
+require 'config/koneksi.php';
+
+if (!isset($_SESSION['login_user'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// Ambil username (Default 'Guest' jika error)
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+
+if (!isset($_SESSION['login_user'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// Ambil ID dari URL, default ke 1 jika tidak ada
+$id = isset($_GET['id']) ? (int)$_GET['id'] : 1;
+
+// 1. Ambil Data Karakter
+$queryChar = "SELECT * FROM characters WHERE char_id = $id";
+$resultChar = mysqli_query($koneksi, $queryChar);
+$character = mysqli_fetch_assoc($resultChar);
+
 if (!$character) {
     echo "Karakter tidak ditemukan!";
     exit;
 }
-$timeline = getCharacterTimeline($character['char_id']);
+
+// 2. Ambil Data Timeline
+// Pastikan kolom 'display_order' atau 'year_period' digunakan untuk urutan
+$queryTime = "SELECT * FROM timeline WHERE character_id = $id ORDER BY display_order ASC LIMIT 6";
+$resultTime = mysqli_query($koneksi, $queryTime);
+
+$timeline_data = [];
+while ($row = mysqli_fetch_assoc($resultTime)) {
+    $timeline_data[] = $row;
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,88 +45,103 @@ $timeline = getCharacterTimeline($character['char_id']);
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="ArthurShelby.css" />
+    <link rel="stylesheet" href="assets/css/char_bio.css" />
   </head>
   <body>
     <div class="desktop">
-      <img class="background-merokok" src="Karakter img/merokok.png" />
-      <img class="background-silet" src="Karakter img/silet.png" />
-      <img class="karakter" src="Karakter img/arthur.png" />
-      <img class="background-asap" src="Karakter img/asap.png" />
-      <img class="pigura" src="Karakter img/pigura.png" />
+      <img class="background-merokok" src="assets/img/characters/merokok.png" />
+      <img class="background-silet" src="assets/img/characters/silet.png" />
+      <img class="background-asap" src="assets/img/characters/asap.png" />
+      <img class="pigura" src="assets/img/characters/pigura.png" />
+      
+      <img class="karakter" src="<?= $character['image_url'] ?>" alt="<?= $character['name'] ?>" />
+
       <p class="deskripsi">
-        Arthur Shelby adalah putra tertua keluarga Shelby dan tangan kanan Thomas Shelby dalam Peaky Blinders. Berbeda dengan Thomas yang tenang dan strategis, Arthur dikenal lebih emosional, impulsif, dan sering bertindak terlebih dahulu sebelum berpikir. Pengalamannya selama Perang Dunia I juga meninggalkan trauma mendalam yang mempengaruhi stabilitas emosinya.  Meskipun keras dan brutal, Arthur memiliki sisi loyalitas dan kasih sayang yang kuat terhadap keluarganya. Ia menjadi kekuatan fisik utama Peaky Blinders—sekaligus sosok yang terus berjuang menghadapi bayang-bayang masa lalu dan identitas dirinya.
-      <div class="nama-karakter">Arthur Shelby</div>
+        <?= $character['long_desc'] ?>
+      </p>
+
+      <div class="nama-karakter"><?= $character['name'] ?></div>
+      
       <p class="the-life-path-of">
         <span class="span">The Life Path <br /></span>
         <span class="text-wrapper-2">of <br /></span>
-        <span class="span">Arthur Shelby</span>
+        <span class="span"><?= $character['name'] ?></span>
       </p>
-      <!-- HEADER BAR -->
+
       <div class="header"></div>
 
-    <a href="index.html" class="nav-link">
-        <div class="nav-item-container nav-home">
-            <img class="nav-icon" src="Avatar img/home.png" />
-            <div class="nav-text home-text">Home</div>
-        </div>
-    </a>
+      <a href="index.php" class="nav-link">
+            <div class="nav-item-container nav-home">
+                <img class="nav-icon" src="assets/img/avatar/home.png" />
+                <div class="nav-text home-text">Home</div>
+            </div>
+        </a>
 
-    <a href="Karakter.html" class="nav-link">
-        <div class="tanda"></div>
-        <div class="nav-item-container nav-character">
-            <img class="nav-icon" src="Avatar img/character.png" />
-            <div class="nav-text character-text">Character</div>
-        </div>
-    </a>
+        <a href="characters.php" class="nav-link">
+            <div class="tanda"></div>
+            <div class="nav-item-container nav-character">
+                <img class="nav-icon" src="assets/img/avatar/character.png" />
+                <div class="nav-text character-text">Character</div>
+            </div>
+        </a>
 
-    <a href="Avatar.html" class="nav-link">
-        <div class="nav-item-container nav-roleplay">
-            <img class="nav-icon" src="Avatar img/roleplay.png" />
-            <div class="nav-text roleplay-text">Roleplay</div>
-        </div>
-    </a>
+        <a href="roleplay_mission.php" class="nav-link">
+            <div class="nav-item-container nav-roleplay">
+                <img class="nav-icon" src="assets/img/avatar/roleplay.png" />
+                <div class="nav-text roleplay-text">Roleplay</div>
+            </div>
+        </a>
 
-    <a href="Start.html" class="nav-link">
-        <div class="nav-item-container nav-profile">
-            <img class="nav-icon" src="Avatar img/profile.png" />
-            <div class="nav-text profile-text">Aljatsiya</div>
-        </div>
-    </a>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') : ?>
+                <a href="admin_dashboard.php">
+                    <div class="nav-item-container nav-profile">
+                        <img class="nav-icon" src="assets/img/avatar/profile.png" alt="Profile">
+                        <div class="nav-text profile-text"><?= htmlspecialchars($username); ?> (Admin)</div>
+                    </div>
+                </a>
+            <?php else : ?>
+                <div class="nav-item-container nav-profile" style="cursor: default;">
+                    <img class="nav-icon" src="assets/img/avatar/profile.png" alt="Profile">
+                    <div class="nav-text profile-text"><?= htmlspecialchars($username); ?></div>
+                </div>
+            <?php endif; ?>
 
-    <a href="Halaman1.html" class="nav-link">
-        <div class="nav-item-container nav-logout">
-            <img class="nav-icon" src="Avatar img/logout.png" />
-            <div class="nav-text logout-text">Logout</div>
-        </div>
-    </a>
+        <a href="logout.php" class="nav-link">
+            <div class="nav-item-container nav-logout">
+                <img class="nav-icon" src="assets/img/avatar/logout.png" />
+                <div class="nav-text logout-text">Logout</div>
+            </div>
+        </a>
 
-      <img class="background-order" src="Karakter img/by order.png" />
-      <p class="tekstimeline1">Lahir di Birmingham sebagai putra pertamakeluarga Shelby.</p>
-      <p class="tekstimeline2">Terlibat membangun awal mula Peaky Blinders bersama adik-adiknya.</p>
-      <p class="tekstimeline3">Bertugas dalam Perang Dunia 1, pulang dengan trauma berat.</p>
-      <p class="tekstimeline4">Bergabung kembali sebagai kekuatan utama dalam operasi Peaky Blinders.</p>
-      <p class="tekstimeline5">Menghadapi konflik antar geng dan pergulatan emosi yang tidak stabil.</p>
-      <p class="tekstimeline6">Memasuki masa krisis identitas.</p>
-      <img class="pita1" src="Karakter img/timeline.png" />
-      <img class="pita2" src="Karakter img/timeline.png" />
-      <img class="pita3" src="Karakter img/timeline.png" />
-      <img class="pita4" src="Karakter img/timeline.png" />
-      <img class="pita5" src="Karakter img/timeline.png" />
-      <img class="pita6" src="Karakter img/timeline.png" />
-      <div class="timeline1">1890</div>
-      <div class="timeline2">1910</div>
-      <div class="timeline3">1914-1918</div>
-      <div class="timeline4">1919</div>
-      <div class="timeline5">1920-1923</div>
-      <div class="timeline6">1924</div>
-      <img class="pembatas" src="Karakter img/pembatas.png" />
-      <a href="Karakter.html">
-      <div class="back">
-        <img class="tombol-back" src="Karakter img/back.png" />
+      <img class="background-order" src="assets/img/characters/by order.png" />
+
+      <?php 
+        // Kita loop manual 1 sampai 6 untuk mengisi slot layout
+        // Jika data dari database kurang dari 6, slot akan kosong
+        for ($i = 0; $i < 6; $i++): 
+            $num = $i + 1; // Index CSS dimulai dari 1 (timeline1, timeline2)
+            $data = isset($timeline_data[$i]) ? $timeline_data[$i] : null;
+      ?>
+          <?php if ($data): ?>
+            <p class="tekstimeline<?= $num ?>"><?= $data['event_description'] ?></p>
+            <div class="timeline<?= $num ?>"><?= $data['year_period'] ?></div>
+          <?php else: ?>
+             <p class="tekstimeline<?= $num ?>"></p>
+             <div class="timeline<?= $num ?>"></div>
+          <?php endif; ?>
+          
+          <img class="pita<?= $num ?>" src="assets/img/characters/timeline.png" />
+      <?php endfor; ?>
+
+      <img class="pembatas" src="assets/img/characters/pembatas.png" />
+      
+      <a href="characters.php">
+        <div class="back">
+            <img class="tombol-back" src="assets/img/characters/back.png" />
         </div>
       </a>
-      <p class="quote">“The world doesn’t care about your pain. So you punch back.”</p>
+
+      <p class="quote">“<?= $character['quotes'] ?>”</p>
     </div>
   </body>
 </html>

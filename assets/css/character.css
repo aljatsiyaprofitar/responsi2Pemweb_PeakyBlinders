@@ -1,3 +1,21 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+/* FONTS */
+@font-face {
+    font-family: 'Metal Mania';
+    src: local('Metal Mania'), url('../Font/MetalMania.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lucida Fax';
+    src: local('Lucida Fax'), url('../Font/LucidaFax.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'Lucida Sans';
+    src: local('Lucida Sans'), url('../Font/LucidaSansUnicode.ttf') format('truetype');
+}
+
 /* RESET */
 html, body {
   margin: 0;
@@ -6,7 +24,10 @@ html, body {
   font: inherit;
   font-size: 100%;
   box-sizing: border-box;
+  width: 100%;
   height: 100%;
+  background-color: #383837;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 a { text-decoration: none; }
@@ -14,21 +35,21 @@ a { text-decoration: none; }
 /* LAYOUT UTAMA */
 .desktop {
   background-color: #383837;
-  width: 1440px;
-  height: 1024px;
-  margin: 0 auto;
   position: relative;
+  width: 100%;
+  min-height: 100vh;
   overflow: hidden;
 }
 
 /* HEADER BAR */
 .header {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 1439px;
+  top: 0; left: 0;
+  width: 100%;
   height: 123px;
   background-color: #181815;
+  border-bottom: 1px solid #5d5d5d;
+  z-index: 10;
 }
 
 
@@ -36,61 +57,60 @@ a { text-decoration: none; }
 .nav-item-container {
   position: absolute;
   top: 50px;
-  height: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  z-index: 20;
+  transition: opacity 0.3s;
 }
+.nav-item-container:hover { opacity: 0.8; }
 
 .nav-icon {
-  position: absolute;
-  width: 25px;
-  height: 20px;
+  position: relative;
+  width: 25px; height: 25px;
+  object-fit: contain;
   filter: brightness(1.2);
-  top: -10;
-  left: 5px;
 }
 
 .nav-text {
-  position: absolute;
+  position: relative;
   color: #e7c691;
   font-size: 20px;
   font-family: 'Lucida Fax', Helvetica;
   letter-spacing: 1px;
+  white-space: nowrap;
 }
 
-.nav-home { left: 80px; width: 100px; }
-.home-text { left: 32px; }
+.nav-home { left: 80px; }
+.nav-character { left: 205px; }
+.nav-roleplay { left: 377px; }
 
-.nav-character { left: 205px; width: 140px; }
-.character-text { left: 35px; }
+/* Navigasi Kanan */
+.nav-profile { right: 200px; flex-direction: row-reverse; }
+.nav-logout { right: 50px; }
 
-.nav-roleplay { left: 377px; width: 160px; }
-.roleplay-text { left: 45px; }
-
-.nav-profile { left: 1075px; width: 120px; }
-.profile-text { left: 35px; }
-
-.nav-logout { left: 1250px; width: 120px; }
-.logout-text { left: 35px; }
-
-/* Highlight Character */
+/* Highlight Box */
 .tanda {
     position: absolute;
-    top: 30px; 
-    left: 200px;
-    width: 150px;
-    height: 63px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px; height: 63px;
     background-color: #e7c69126; 
     border-radius: 10px;
     border: 1px solid #795934;
+    z-index: -1;
 }
 
-
-/* BACKGROUND */
-.background{
+/* BACKGROUND IMAGE (Img tag di HTML, posisi CSS) */
+.background {
     position: absolute;
-    top: 216px;
-    left: 345px;
+    top: 225px;
+    left: 329px;
     width: 749px;
     height: 730px;
+    z-index: 0;
+    opacity: 0.6; 
 }
 
 /* TITLE */
@@ -98,10 +118,11 @@ a { text-decoration: none; }
     position: absolute;
     top: 162px;
     left: 251px;
-    font-family: 'Metal Mania', serif;
+    font-family: 'Metal Mania', serif; /* Pastikan font sudah di-load */
     color: #ecd4ae;
     font-size: 60px;
     letter-spacing: 32px;
+    text-transform: uppercase;
 }
 
 /* SUBTITLE */
@@ -110,37 +131,37 @@ a { text-decoration: none; }
     top: 236px;
     left: 236px;
     width: 1087px;
-    font-family: 'Lucida Sans', Helvecita;
+    font-family: 'Lucida Sans', Helvetica, sans-serif;
     color: #ecd4ae;
     font-size: 28px;
     letter-spacing: 2.8px;
+    text-align: center; /* Agar rapi */
 }
 
-/* ===== BOX PERSEGI SEPERTI INDEX ===== */
+/* ===== BOX PERSEGI ===== */
 .box {
     position: absolute;
     width: 440px;
     height: 308px;
-    background-color: #e7c69133;
+    background-color: #e7c69133; /* Transparan */
     border-radius: 40px;
-    z-index: 1;
+    z-index: 5; /* Harus di atas background */
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-/* posisi box */
-.Tomas { top: 370px; left: 31px; }
+.box:hover {
+    background-color: #e7c69155; /* Efek hover lebih terang */
+    transform: translateY(-5px);
+}
+
+/* POSISI BOX (Sesuai ID Karakter 1-6) */
+.Thomas { top: 370px; left: 31px; }
 .Arthur { top: 370px; left: 499px; }
-.Polly { top: 370px; left: 967px; }
-.John{ top: 689px; left: 31px; }
-.Ada { top: 689px; left: 499px; }
-.Finn { top: 689px; left: 967px; }
-
-/* SVG RECTANGLE (layer di belakang) */
-.rect {
-    position: absolute;
-    width: 440px;
-    height: 308px;
-    z-index: 0;
-}
+.Polly  { top: 370px; left: 967px; }
+.John   { top: 689px; left: 31px; }
+.Ada    { top: 689px; left: 499px; }
+.Finn   { top: 689px; left: 967px; }
 
 /* CHARACTER NAMES */
 .char {
@@ -149,20 +170,24 @@ a { text-decoration: none; }
     color: #ecd4ae;
     font-size: 30px;
     letter-spacing: 3px;
-    z-index: 2;
+    z-index: 4; /* Di bawah box klik, tapi di atas bg */
+    pointer-events: none; /* Agar klik tembus ke box */
 }
 
 .char span {
     font-size: 18px;
     letter-spacing: 0.32px;
+    display: block;
+    margin-top: 5px;
 }
 
-.cThomas{ top: 400px; left: 65px; }
+/* Posisi Nama (Harus match dengan box) */
+.cThomas { top: 400px; left: 65px; }
 .cArthur { top: 400px; left: 535px; }
-.cPolly { top: 400px; left: 1013px; }
-.cJohn { top: 715px; left: 65px; }
-.cAda { top: 715px; left: 535px; }
-.cFinn { top: 715px; left: 1013px; }
+.cPolly  { top: 400px; left: 1013px; }
+.cJohn   { top: 715px; left: 65px; }
+.cAda    { top: 715px; left: 535px; }
+.cFinn   { top: 715px; left: 1013px; }
 
 /* DESCRIPTIONS */
 .desc {
@@ -170,49 +195,32 @@ a { text-decoration: none; }
     width: 316px;
     font-family: 'Old Standard TT', serif;
     color: #ecd4ae;
-    font-size: 24px;
-    letter-spacing: 2.4px;
-    z-index: 2;
+    font-size: 20px; /* Sedikit dikecilkan agar muat */
+    letter-spacing: 1px;
+    line-height: 1.2;
+    z-index: 4;
+    pointer-events: none;
 }
 
-.dThomas{ top: 487px; left: 65px; }
+/* Posisi Deskripsi */
+.dThomas { top: 487px; left: 65px; }
 .dArthur { top: 487px; left: 535px; }
-.dPolly { top: 487px; left: 1013px; }
-.dJohn { top: 792px; left: 65px; }
-.dAda { top: 792px; left: 537px; }
-.dFinn { top: 792px; left: 1008px; }
+.dPolly  { top: 487px; left: 1013px; }
+.dJohn   { top: 792px; left: 65px; }
+.dAda    { top: 792px; left: 537px; }
+.dFinn   { top: 792px; left: 1008px; }
 
-/* Hilangkan underline default link */
+/* Nav Link Styling */
 .nav-link {
     text-decoration: none;
     color: inherit;
 }
 
-/* Jadikan seluruh item bisa diklik */
-.nav-item-container {
-    cursor: pointer;
-}
-
-/* Efek hover (halus & elegan) */
 .nav-item-container:hover {
     opacity: 0.85;
     transform: translateY(-1px);
 }
 
-/* Pastikan teks & icon tetap warna asli */
 .nav-item-container:hover .nav-text {
     color: #f0d9b5;
-}
-
-.box {
-  cursor: pointer;
-}
-
-.box:hover {
-    opacity: 0.85;
-    transform: translateY(-1px);
-}
-
-.box:hover {
-  color: #f0d9b5;
 }

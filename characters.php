@@ -1,6 +1,28 @@
 <?php
-require 'includes/functions.php';
-$characters = getAllCharacters();
+session_start();
+// Pastikan path koneksi ini benar sesuai struktur folder Anda
+require 'config/koneksi.php'; 
+
+if (!isset($_SESSION['login_user'])) {
+    header("Location: login.php");
+    exit;
+}
+
+// Ambil username (Default 'Guest' jika error)
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
+
+// Ambil semua data karakter
+$query = "SELECT * FROM characters ORDER BY char_id ASC LIMIT 6";
+$result = mysqli_query($koneksi, $query);
+
+$characters = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $characters[] = $row;
+}
+
+// Mapping urutan database ke class CSS spesifik yang ada di Karakter.css
+// Index 0 -> Thomas, 1 -> Arthur, dst.
+$css_classes = ['Thomas', 'Arthur', 'Polly', 'John', 'Ada', 'Finn'];
 ?>
 
 <!DOCTYPE html>
@@ -8,84 +30,95 @@ $characters = getAllCharacters();
 <head>
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta charset="utf-8" />
-
-    <!-- CSS -->
-    <link rel="stylesheet" href="Karakter.css" />
+    <link rel="stylesheet" href="assets/css/character.css" /> 
+    </head>
 
 <body>
 <div class="desktop">
 
     <div class="header"></div>
-
-    <a href="index.html" class="nav-link">
+    
+    <a href="index.php" class="nav-link">
         <div class="nav-item-container nav-home">
-            <img class="nav-icon" src="Avatar img/home.png" />
+            <img class="nav-icon" src="assets/img/avatar/home.png" />
             <div class="nav-text home-text">Home</div>
         </div>
     </a>
 
-    <a href="Karakter.html" class="nav-link">
+    <a href="characters.php" class="nav-link">
         <div class="tanda"></div>
         <div class="nav-item-container nav-character">
-            <img class="nav-icon" src="Avatar img/character.png" />
+            <img class="nav-icon" src="assets/img/avatar/character.png" />
             <div class="nav-text character-text">Character</div>
         </div>
     </a>
 
-    <a href="Avatar.html" class="nav-link">
+    <a href="roleplay_mission.php" class="nav-link">
         <div class="nav-item-container nav-roleplay">
-            <img class="nav-icon" src="Avatar img/roleplay.png" />
+            <img class="nav-icon" src="assets/img/avatar/roleplay.png" />
             <div class="nav-text roleplay-text">Roleplay</div>
         </div>
     </a>
 
-    <a href="Start.html" class="nav-link">
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') : ?>
+    <a href="admin_dashboard.php" class="nav-link">
         <div class="nav-item-container nav-profile">
-            <img class="nav-icon" src="Avatar img/profile.png" />
-            <div class="nav-text profile-text">Aljatsiya</div>
+            <img class="nav-icon" src="assets/img/avatar/profile.png" alt="Profile">
+            <div class="nav-text profile-text">
+                <?= htmlspecialchars($username); ?> (Admin)
+            </div>
         </div>
     </a>
+<?php else : ?>
+    <a href="#" class="nav-link" style="cursor: default;">
+        <div class="nav-item-container nav-profile">
+            <img class="nav-icon" src="assets/img/avatar/profile.png" alt="Profile">
+            <div class="nav-text profile-text">
+                <?= htmlspecialchars($username); ?>
+            </div>
+        </div>
+    </a>
+<?php endif; ?>
 
-    <a href="Halaman1.html" class="nav-link">
+    <a href="logout.php" class="nav-link">
         <div class="nav-item-container nav-logout">
-            <img class="nav-icon" src="Avatar img/logout.png" />
+            <img class="nav-icon" src="assets/img/avatar/logout.png" />
             <div class="nav-text logout-text">Logout</div>
         </div>
     </a>
 
-    <!-- BACKGROUND -->
-    <img class="background" src="Index img/background.png">
+    <img class="background" src="assets/img/index/background.png">
 
-    <!-- TITLE -->
     <div class="title">The Peaky Blinders</div>
 
     <p class="subtitle">
         Meet the member of Birmingham’s most notorious gang. Each character plays a vital role in the Shelby family’s rise to power.
     </p>
 
-    <!-- CHARACTER BOX -->
-    <div class="box Tomas" onclick="location.href='ThomasShelby.html'"></div>
-    <div class="box Arthur" onclick="location.href='ArthurShelby.html'"></div>
-    <div class="box Polly" onclick="location.href='PollyGray.html'"></div>
-    <div class="box John" onclick="location.href='JohnShelby.html'"></div>
-    <div class="box Ada" onclick="location.href='AdaShelby.html'"></div>
-    <div class="box Finn" onclick="location.href='FinnShelby.html'"></div>
+    <?php foreach ($characters as $index => $char): ?>
+        <?php if (isset($css_classes[$index])): ?>
+            <div class="box <?= $css_classes[$index] ?>" 
+                 onclick="location.href='char_bio.php?id=<?= $char['char_id'] ?>'">
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
 
-    <!-- NAMES -->
-    <p class="char cThomas">Thomas Shelby<br><span>Leader of the Peaky</span></p>
-    <p class="char cArthur">Arthur Shelby<br><span>Deputy Leader</span></p>
-    <p class="char cPolly">Polly Gray<br><span>Treasure & Matriarch</span></p>
-    <p class="char cJohn">John Shelby<br><span>Enforcer</span></p>
-    <p class="char cAda">Ada Shelby<br><span>Shelby Sister</span></p>
-    <p class="char cFinn">Finn Shelby<br><span>Youngest Brother</span></p>
+    <?php foreach ($characters as $index => $char): ?>
+        <?php if (isset($css_classes[$index])): ?>
+            <p class="char c<?= $css_classes[$index] ?>">
+                <?= $char['name'] ?><br>
+                <span><?= $char['role'] ?></span>
+            </p>
+        <?php endif; ?>
+    <?php endforeach; ?>
 
-    <!-- DESCRIPTIONS -->
-    <p class="desc dThomas">The calculating and ambitious leader of the Shelby family and the Peaky Blinders gang.</p>
-    <p class="desc dArthur">The eldest Shelby brother, known for his fierce temper and unwavering loyalty.</p>
-    <p class="desc dPolly">The wise and formidable matriarch who managed the business while the men were at war.</p>
-    <p class="desc dJohn">The third Shelby brother, hot-headed and fiercely loyal to his family.</p>
-    <p class="desc dAda">The only Shelby sister, independent and strong-willed, often challenging her brothers.</p>
-    <p class="desc dFinn">The youngest Shelby brother, eager to prove himself to his older siblings.</p>
+    <?php foreach ($characters as $index => $char): ?>
+        <?php if (isset($css_classes[$index])): ?>
+            <p class="desc d<?= $css_classes[$index] ?>">
+                <?= $char['short_desc'] ?>
+            </p>
+        <?php endif; ?>
+    <?php endforeach; ?>
 
 </div>
 </body>
