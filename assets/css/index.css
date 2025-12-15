@@ -16,7 +16,7 @@
     src: local('Lucida Sans'), url('../Font/LucidaSansUnicode.ttf') format('truetype');
 }
 
-/* RESET & BODY FULL SCREEN */
+/* RESET & FULL SCREEN SETUP */
 html, body {
   margin: 0;
   padding: 0;
@@ -26,28 +26,38 @@ html, body {
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  background-color: #383837; /* Warna dasar gelap */
-  overflow-x: hidden; /* Mencegah scroll samping */
+  background-color: #383837;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 a { text-decoration: none; color: inherit; }
 
-/* LAYOUT UTAMA (PERBAIKAN: Width 100%) */
+/* CONTAINER UTAMA (FULL WIDTH) */
 .desktop {
   background-color: #383837;
   position: relative;
   width: 100%;
   min-height: 100vh;
-  min-width: 1440px; /* Menjaga agar elemen pixel tidak berantakan di layar kecil */
   overflow: hidden;
 }
 
-/* HEADER BAR (PERBAIKAN: Width 100%) */
-.header {
+/* BACKGROUND IMAGE */
+.background-full {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 225px;
+  left: 329px;
+  width: 749px;
+  height: 730px;
+  z-index: 0;
+  opacity: 0.6; /* Sedikit transparan agar teks terbaca */
+}
+
+
+/* HEADER BAR */
+.header-bar {
+  position: absolute;
+  top: 0; left: 0;
   width: 100%;
   height: 123px;
   background-color: #181815;
@@ -55,31 +65,37 @@ a { text-decoration: none; color: inherit; }
   z-index: 10;
 }
 
-/* ======== NAVIGATION ======== */
+/* CONTENT WRAPPER (1440px CENTERED) */
+.content-wrapper {
+  position: relative;
+  width: 1440px;
+  height: 1024px;
+  margin: 0 auto;
+  z-index: 20;
+}
+
+/* ================= NAVIGATION ================= */
 .nav-item-container {
   position: absolute;
   top: 50px;
-  height: 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   cursor: pointer;
   z-index: 20;
   transition: opacity 0.3s;
 }
-
-.nav-item-container:hover {
-    opacity: 0.8;
-}
+.nav-item-container:hover { opacity: 0.8; }
 
 .nav-icon {
-  position: absolute;
-  width: 25px;
-  height: 20px;
+  position: relative;
+  width: 25px; height: 25px;
+  object-fit: contain;
   filter: brightness(1.2);
-  top: -2px; /* Disesuaikan sedikit */
-  left: 5px;
 }
 
 .nav-text {
-  position: absolute;
+  position: relative;
   color: #e7c691;
   font-size: 20px;
   font-family: 'Lucida Fax', Helvetica;
@@ -87,101 +103,95 @@ a { text-decoration: none; color: inherit; }
   white-space: nowrap;
 }
 
-/* Posisi Navigasi Kiri */
-.nav-home { left: 80px; width: 100px; }
-.home-text { left: 32px; }
+.nav-home { left: 80px; }
+.nav-character { left: 205px; }
+.nav-roleplay { left: 377px; }
 
-.nav-character { left: 240px; width: 140px; } /* Geser sedikit biar lega */
-.character-text { left: 35px; }
+/* Navigasi Kanan */
+.nav-profile { right: 200px; flex-direction: row-reverse; }
+.nav-logout { right: 50px; }
 
-.nav-roleplay { left: 420px; width: 160px; }
-.roleplay-text { left: 45px; }
-
-/* Posisi Navigasi Kanan (PERBAIKAN: Gunakan Right agar nempel kanan) */
-.nav-profile { 
-    right: 200px; /* Jarak dari kanan */
-    width: auto; 
-    text-align: right;
-}
-.profile-text { 
-    position: relative; 
-    left: 35px; 
-    top: -2px;
-}
-
-.nav-logout { 
-    right: 50px; /* Jarak dari kanan */
-    width: 120px; 
-}
-.logout-text { left: 35px; }
-
-/* Highlight Box (Home) */
+/* Highlight Box */
 .tanda {
     position: absolute;
-    top: -20px; 
-    left: -20px;
-    width: 130px;
-    height: 63px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 130px; height: 63px;
     background-color: #e7c69126; 
     border-radius: 10px;
     border: 1px solid #795934;
+    z-index: -1;
 }
 
-/* ======== CONTENT BOXES ======== */
-/* Menggunakan hover effect pada wrapper link */
+/* ================= GRID BOXES & LOGOS ================= */
 
 .box-link {
-    display: block; /* Agar bisa diklik */
+    display: block;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
+.box-link:hover { transform: translateY(-5px); }
 
-.box-link:hover {
-    transform: translateY(-5px);
-}
-
-/* Meet the Characters BOX */
+/* Boxes Background */
 .meet-box {
   position: absolute;
-  top: 470px;
-  left: 84px;
-  width: 401px;
-  height: 447px;
+  top: 470px; left: 84px;
+  width: 401px; height: 447px;
   background-color: #e7c69133;
   border-radius: 40px;
-  z-index: 1;
+  pointer-events: none;
 }
 
-/* Roleplay Adventures BOX */
 .roleplay-box {
   position: absolute;
-  top: 470px;
-  left: 519px;
-  width: 401px;
-  height: 447px;
+  top: 470px; left: 519px;
+  width: 401px; height: 447px;
   background-color: #e7c69133;
   border-radius: 40px;
-  z-index: 1;
+  pointer-events: none;
 }
 
-/* About the Peaky Box */
 .about-box {
   position: absolute;
-  top: 297px;
-  left: 954px;
-  width: 401px;
-  height: 620px;
+  top: 297px; left: 954px;
+  width: 401px; height: 620px;
   background-color: #e7c69133;
   border-radius: 40px;
-  z-index: 1;
+}
+
+/* --- GRID ICONS STYLING (PERBAIKAN POSISI) --- */
+.grid-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    z-index: 10;
+    filter: brightness(1.1) drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+/* Posisi Icon Characters */
+.icon-char {
+    top: 510px;
+    left: 120px;
+}
+
+/* Posisi Icon Roleplay */
+.icon-rp {
+    top: 510px;
+    left: 550px;
+}
+
+/* Posisi Icon About (PERBAIKAN: Digeser ke kiri) */
+.icon-about {
+    top: 320px;
+    left: 965px; /* Sebelumnya 980px, digeser agar tidak kena teks */
 }
 
 /* TEXT CONTENT */
 .Welcome {
   position: absolute;
-  top: 195px;
-  left: 94px;
-  font-family: 'Metal Mania', Helvetica, sans-serif;
+  top: 195px; left: 94px;
+  font-family: 'Metal Mania', Helvetica;
   font-size: 60px;
   color: #ecd4ae;
   letter-spacing: 6px;
@@ -190,10 +200,9 @@ a { text-decoration: none; color: inherit; }
 
 .desc {
   position: absolute;
-  top: 260px;
-  left: 96px;
+  top: 260px; left: 96px;
   width: 730px;
-  font-family: 'Lucida Fax', Helvetica, sans-serif;
+  font-family: 'Lucida Fax', Helvetica;
   color: #ecd4ae;
   font-size: 28px;
   letter-spacing: 4px;
@@ -202,25 +211,22 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* Deskripsi Box */
-.explore-characters,
-.explore-roleplay,
-.explore-peaky {
+.explore-characters, .explore-roleplay, .explore-peaky {
   position: absolute;
   font-family: 'Lucida Sans', serif;
   color: #ecd4ae;
   font-size: 24px;
   letter-spacing: 2.4px;
   text-align: center;
-  pointer-events: none; /* Agar klik tembus ke box link */
+  pointer-events: none;
   z-index: 5;
 }
-
 .explore-characters { top: 630px; left: 153px; width: 279px; }
 .explore-roleplay { top: 630px; left: 590px; width: 279px; }
 .explore-peaky { top: 438px; left: 977px; width: 351px; }
 
-.meet-the-characters,
-.rolepay-adventures {
+/* Judul Box */
+.meet-the-characters, .rolepay-adventures {
   position: absolute;
   font-family: 'Lucida Fax', Helvetica;
   color: #ecd4ae;
@@ -230,30 +236,20 @@ a { text-decoration: none; color: inherit; }
   pointer-events: none;
   z-index: 5;
 }
-
 .meet-the-characters { top: 526px; left: 189px; text-align: right; }
 .rolepay-adventures { top: 526px; left: 611px; text-align: right; }
 
+/* Judul About (PERBAIKAN: Digeser ke kanan) */
 .about-the-peaky {
   position: absolute;
   top: 320px;
-  left: 1005px;
+  left: 1040px; /* Sebelumnya 1005px, digeser kanan memberi ruang untuk icon */
   width: 300px;
   font-family: 'Lucida Fax', Helvetica;
   color: #ecd4ae;
   font-size: 32px;
   text-align: right;
   letter-spacing: 4px;
+  pointer-events: none;
   z-index: 5;
-}
-
-/* IMAGES */
-.background {
-  position: absolute;
-  top: 225px;
-  left: 329px;
-  width: 749px;
-  height: 730px;
-  z-index: 0;
-  opacity: 0.6; /* Sedikit transparan agar teks terbaca */
 }

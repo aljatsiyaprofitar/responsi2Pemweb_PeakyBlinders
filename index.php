@@ -12,97 +12,98 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest';
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <meta charset="utf-8" />
-    <title>Home</title>
-
-    <link rel="stylesheet" href="assets/css/index.css" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Peaky Blinders</title>
+    <link rel="stylesheet" href="assets/css/index.css">
+</head>
 <body>
-<div class="desktop">
 
-    <div class="header"></div>
+    <div class="desktop">
+        
+        <img class="background-full" src="assets/img/index/background.png" alt="Background">
+        
+        <div class="header-bar"></div>
 
-    <a href="index.php" class="nav-link">
-        <div class="nav-item-container nav-home">
-            <div class="tanda"></div>
-            <img class="nav-icon" src="assets/img/avatar/home.png" />
-            <div class="nav-text home-text">Home</div>
-        </div>
-    </a>
 
-    <a href="characters.php" class="nav-link">
-        <div class="nav-item-container nav-character">
-            <img class="nav-icon" src="assets/img/avatar/character.png" />
-            <div class="nav-text character-text">Character</div>
-        </div>
-    </a>
+        <div class="content-wrapper">
 
-    <a href="choose_avatar.php" class="nav-link">
-        <div class="nav-item-container nav-roleplay">
-            <img class="nav-icon" src="assets/img/avatar/roleplay.png" />
-            <div class="nav-text roleplay-text">Roleplay</div>
-        </div>
-    </a>
+            <a href="index.php">
+                <div class="nav-item-container nav-home">
+                    <div class="tanda"></div> <img class="nav-icon" src="assets/img/avatar/home.png" alt="Home">
+                    <div class="nav-text home-text">Home</div>
+                </div>
+            </a>
 
-    <a href="start.php" class="nav-link">
-        <div class="nav-item-container nav-profile">
-            <img class="nav-icon" src="assets/img/avatar/profile.png" />
-            <div class="nav-text profile-text"><?= htmlspecialchars($username); ?></div>
-        </div>
-    </a>
+            <a href="characters.php">
+                <div class="nav-item-container nav-character">
+                    <img class="nav-icon" src="assets/img/avatar/character.png" alt="Characters">
+                    <div class="nav-text character-text">Character</div>
+                </div>
+            </a>
 
-    <a href="logout.php" class="nav-link">
-        <div class="nav-item-container nav-logout">
-            <img class="nav-icon" src="assets/img/avatar/logout.png" />
-            <div class="nav-text logout-text">Logout</div>
-        </div>
-    </a>
+            <a href="choose_avatar.php">
+                <div class="nav-item-container nav-roleplay">
+                    <img class="nav-icon" src="assets/img/avatar/roleplay.png" alt="Roleplay">
+                    <div class="nav-text roleplay-text">Roleplay</div>
+                </div>
+            </a>
 
-    <!-- ================= BOX 1 : MEET THE CHARACTERS ================= -->
-    <a href="characters.php" class="box-character">
-        <div class="meet-box"></div>
-        <div class="meet-the-characters">
-            Meet the Characters
-        </div>
-        <p class="explore-characters">
-            Explore detailed profiles of the Shelby family and their associates from Birmingham's most notorious gang.
-        </p>
-    </a>
+            <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') : ?>
+                <a href="admin_dashboard.php">
+                    <div class="nav-item-container nav-profile">
+                        <img class="nav-icon" src="assets/img/avatar/profile.png" alt="Profile">
+                        <div class="nav-text profile-text"><?= htmlspecialchars($username); ?> (Admin)</div>
+                    </div>
+                </a>
+            <?php else : ?>
+                <div class="nav-item-container nav-profile" style="cursor: default;">
+                    <img class="nav-icon" src="assets/img/avatar/profile.png" alt="Profile">
+                    <div class="nav-text profile-text"><?= htmlspecialchars($username); ?></div>
+                </div>
+            <?php endif; ?>
 
-    <!-- ================= BOX 2 : ROLEPLAY ADVENTURES ================= -->
-    <a href="choose_avatar.php" class="box-link">
-        <div class="roleplay-box"></div>
-        <div class="rolepay-adventures">
-            Roleplay Adventures
-        </div>
-        <p class="explore-roleplay">
-            Make critical decisions as you navigate the dangerous world of 1920 Birmingham in this interactive story.
-        </p>
-    </a>
+            <a href="logout.php">
+                <div class="nav-item-container nav-logout">
+                    <img class="nav-icon" src="assets/img/avatar/logout.png" alt="Logout">
+                    <div class="nav-text logout-text">Logout</div>
+                </div>
+            </a>
 
-    <!-- ================= BOX 3 : ABOUT PEAKY BLINDERS ================= -->
-        <div class="about-box"></div>
-        <p class="about-the-peaky">
-            About the Peaky Blinders
-        </p>
-        <p class="explore-peaky">
-            Set in Birmingham, England, the series follow the exploits of the Shelby crime family in the direct aftermath of the First Wolrd War. The fictional family is loosely based on a real urban youth geng of the same name who were active in the city from the 1890s to the early 20th century.
-        </p>
-    </a>
 
-    <!-- ================= TEXT UTAMA ================= -->
-    <div class="Welcome">Welcome to Birmingham, <?= htmlspecialchars($_SESSION['username']); ?>!</div>
+            <div class="Welcome">Welcome to Birmingham, <?= htmlspecialchars($username); ?>!</div>
+            <p class="desc">
+                “I’m not a traitor to my class. I am just an extreme example of what a working man can archive”
+            </p>
 
-    <p class="desc">
-        “I’m not a traitor to my class. I am just an extreme example of what a working man can archive”
-    </p>
+            <a href="characters.php" class="box-link">
+                <div class="meet-box"></div>
+                <img class="grid-icon icon-char" src="assets/img/index/char.svg" alt="Icon">
+                <div class="meet-the-characters">Meet the Characters</div>
+                <p class="explore-characters">
+                    Explore detailed profiles of the Shelby family and their associates from Birmingham's most notorious gang.
+                </p>
+            </a>
 
-    <!-- IMAGE -->
-    <img class="background" src="assets/img/index/background.png" />
+            <a href="choose_avatar.php" class="box-link">
+                <div class="roleplay-box"></div>
+                <img class="grid-icon icon-rp" src="assets/img/index/rp.svg" alt="Icon">
+                <div class="rolepay-adventures">Roleplay Adventures</div>
+                <p class="explore-roleplay">
+                    Make critical decisions as you navigate the dangerous world of 1920 Birmingham in this interactive story.
+                </p>
+            </a>
 
-</div>
-</body>
+            <div class="box-static">
+                <div class="about-box"></div>
+                <img class="grid-icon icon-about" src="assets/img/index/about.svg" alt="Icon">
+                <div class="about-the-peaky">About the Peaky Blinders</div>
+                <p class="explore-peaky">
+                     Set in Birmingham, England, the series follow the exploits of the Shelby crime family in the direct aftermath of the First Wolrd War. The fictional family is loosely based on a real urban youth geng of the same name who were active in the city from the 1890s to the early 20th century.
+                </p>
+            </div>
+
+            </div> </div> </body>
 </html>

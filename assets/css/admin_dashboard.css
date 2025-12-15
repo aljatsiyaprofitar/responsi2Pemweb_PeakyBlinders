@@ -1,0 +1,212 @@
+/* ADMIN LAYOUT UTAMA */
+body { 
+    overflow: hidden; 
+    margin: 0;
+    padding: 0;
+}
+
+.admin-layout { 
+    display: flex; 
+    width: 100vw; 
+    height: 100vh; 
+    background: #1a0505; 
+}
+
+/* SIDEBAR NAVIGASI */
+.sidebar {
+    width: 280px; 
+    background: #2c0b0b; 
+    border-right: 2px solid #ff6b6b;
+    display: flex; 
+    flex-direction: column; 
+    padding: 20px;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.5); 
+    z-index: 10;
+}
+
+.admin-logo {
+    font-family: 'Metal Mania', serif; 
+    font-size: 28px; 
+    color: #ff6b6b;
+    text-align: center; 
+    margin-bottom: 40px; 
+    text-shadow: 0 0 10px #ff0000;
+}
+
+.menu-link {
+    display: block; 
+    padding: 15px 20px; 
+    margin-bottom: 10px;
+    color: #ffcccc; 
+    text-decoration: none; 
+    font-family: 'Lucida Fax', sans-serif;
+    border-radius: 8px; 
+    transition: 0.3s; 
+    font-size: 16px;
+}
+
+.menu-link:hover, .menu-link.active {
+    background: #ff6b6b; 
+    color: #1a0505; 
+    font-weight: bold;
+}
+
+.btn-back { 
+    margin-top: auto; 
+    border: 1px solid #ff6b6b; 
+    text-align: center; 
+}
+
+/* MAIN CONTENT AREA */
+.main-panel {
+    flex: 1; 
+    position: relative; 
+    overflow-y: auto; 
+    padding: 40px;
+    /* Path disesuaikan: naik satu folder (..) ke assets/img */
+    background: url('../img/index/background.png') no-repeat center center;
+    background-size: cover;
+}
+
+.overlay {
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    background: rgba(26, 5, 5, 0.9); 
+    z-index: 0;
+}
+
+.content-container { 
+    position: relative; 
+    z-index: 1; 
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+/* JUDUL HALAMAN */
+.page-header {
+    font-family: 'Metal Mania', serif; 
+    font-size: 40px; 
+    color: #ff6b6b;
+    margin-bottom: 10px; 
+    border-bottom: 1px solid #5d2020; 
+    padding-bottom: 10px;
+}
+
+.page-sub { 
+    font-family: 'Lucida Fax'; 
+    color: #aaa; 
+    margin-bottom: 30px; 
+}
+
+/* DASHBOARD WIDGETS */
+.widget-container {
+    display: flex; 
+    gap: 20px; 
+    margin-top: 50px;
+}
+
+.widget-box {
+    flex: 1; 
+    background: #2c0b0b; 
+    padding: 30px; 
+    border: 1px solid #ff6b6b; 
+    border-radius: 10px; 
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.widget-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+}
+
+.widget-number {
+    color: #ff6b6b; 
+    font-size: 40px; 
+    margin-bottom: 10px;
+    font-family: 'Lucida Fax', sans-serif;
+    font-weight: bold;
+}
+
+.widget-label {
+    color: #fff;
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+/* TABEL CRUD */
+.crud-table {
+    width: 100%; 
+    border-collapse: collapse; 
+    background: rgba(0,0,0,0.5);
+    border: 1px solid #5d2020; 
+    font-family: 'Lucida Sans', sans-serif;
+}
+
+.crud-table th {
+    background: #441010; 
+    color: #ff6b6b; 
+    padding: 15px; 
+    text-align: left;
+    border-bottom: 2px solid #ff6b6b;
+}
+
+.crud-table td {
+    padding: 15px; 
+    border-bottom: 1px solid #5d2020; 
+    color: #ddd; 
+    vertical-align: middle;
+}
+
+.crud-table tr:hover { 
+    background: rgba(255, 107, 107, 0.1); 
+}
+
+.table-img { 
+    width: 50px; 
+    height: 50px; 
+    object-fit: cover; 
+    border-radius: 50%; 
+    border: 1px solid #ff6b6b; 
+}
+
+/* TOMBOL AKSI */
+.btn { 
+    padding: 8px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    border: none; 
+    font-weight: bold; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 14px;
+    font-family: 'Lucida Sans', sans-serif;
+    transition: all 0.2s;
+}
+
+.btn-add { 
+    background: #ff6b6b; 
+    color: #1a0505; 
+    margin-bottom: 20px; 
+    font-size: 16px; 
+    padding: 10px 25px; 
+}
+
+.btn-edit { 
+    background: #e7c691; 
+    color: #000; 
+    margin-right: 5px; 
+}
+
+.btn-del { 
+    background: #a00; 
+    color: #fff; 
+}
+
+.btn:hover { 
+    opacity: 0.9; 
+    transform: scale(1.05); 
+}

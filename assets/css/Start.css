@@ -61,7 +61,7 @@ body {
 .ada-thorne {
   position: absolute;
   bottom: 0;
-  left: 5%; /* Paling kiri */
+  left: 0; /* Paling kiri */
   height: 50%;
   width: auto;
   z-index: 2;
@@ -70,7 +70,7 @@ body {
 .arthur-shelby {
   position: absolute;
   bottom: 0;
-  left: 15%; /* Di sebelah kiri */
+  left: 13.7%; /* Di sebelah kiri */
   height: 60%;
   width: auto;;
   z-index: 3;
@@ -79,7 +79,7 @@ body {
 .polly-gray {
   position: absolute;
   bottom: 0;
-  left: 28%; /* Di tengah agak kiri */
+  left: 30%; /* Di tengah agak kiri */
   height: 55%;
   width: auto;
   z-index: 3;

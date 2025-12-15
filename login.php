@@ -27,6 +27,8 @@ if (isset($_POST['login'])) {
             $_SESSION['login_user'] = true;       
             $_SESSION['user_id'] = $row['id'];    
             $_SESSION['username'] = $row['username'];
+            // TAMBAHAN: SIMPAN ROLE
+            $_SESSION['role'] = $row['role'];
             
             // Redirect ke start.php
             header("Location: start.php");
