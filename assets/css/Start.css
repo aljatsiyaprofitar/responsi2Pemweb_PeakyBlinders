@@ -1,170 +1,194 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+/* Setup Font */
+@font-face {
+    font-family: 'Metal Mania';
+    src: local('Metal Mania'), url('../Font/MetalMania.ttf') format('truetype');
+}
+
 @font-face {
     font-family: 'Lucida Fax';
-    src: local('Lucida Fax'), local('LucidaFax'), sans-serif;
+    src: local('Lucida Fax'), url('../Font/LucidaFax.TTF') format('truetype');
 }
 
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* BODY */
 body {
-  margin: 0; padding: 0; width: 100%; height: 100%;
-  background-color: #191916;
-  display: flex; justify-content: center; align-items: center;
-  font-family: 'Lucida Fax', serif;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+  line-height: 1;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden; /* Mencegah scroll horizontal */
 }
 
-/* Container Utama (Rasio Terkunci 1440x1024) */
+/* CONTAINER */
 .desktop {
-  position: relative;
-  width: min(100vw, 140.625vh);
-  height: min(100vh, 71.11vw);
-  aspect-ratio: 1440 / 1024;
-  background: #191916;
+  background-color: #383837;
   overflow: hidden;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5);
-}
-
-/* --- LAYER GAMBAR --- */
-
-/* 1. Background */
-.background-img {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  z-index: 1;
-}
-
-/* 2. Karakter 
-   Posisi menggunakan % agar responsif.
-   Z-index menentukan siapa di depan siapa.
-*/
-
-/* Arthur (Kiri Belakang) */
-.char-arthur {
-  position: absolute;
-  bottom: 0;       /* Menempel di bawah */
-  left: 5%;        /* Agak ke kiri */
-  height: 85%;     /* Tinggi relatif terhadap layar */
-  width: auto;
-  z-index: 2;
-  filter: drop-shadow(10px 10px 20px rgba(0,0,0,0.7)); /* Bayangan agar menyatu */
-}
-
-/* Ada Thorne (Kanan Belakang) */
-.char-ada {
-  position: absolute;
-  bottom: 0;
-  right: 8%;
-  height: 82%;
-  width: auto;
-  z-index: 2;
-  filter: drop-shadow(-10px 10px 20px rgba(0,0,0,0.7));
-}
-
-/* Polly Gray (Agak Tengah Kiri) */
-.char-polly {
-  position: absolute;
-  bottom: 0;
-  left: 20%;
-  height: 88%;
-  width: auto;
-  z-index: 3; /* Di depan Arthur */
-  filter: brightness(0.9); /* Sedikit lebih gelap agar fokus ke Thomas */
-}
-
-/* Thomas Shelby (Center Depan - The Boss) */
-.char-thomas {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%); /* Trik agar pas di tengah horizontal */
-  height: 95%;     /* Paling besar */
-  width: auto;
-  z-index: 4;      /* Paling depan */
-  filter: drop-shadow(0 0 30px rgba(0,0,0,0.8));
-}
-
-/* --- UI ELEMENTS --- */
-
-/* Text Container */
-.welcome-container {
-  position: absolute;
-  top: 10%;
+  position: relative;
+  
+  /* PERBAIKAN: Agar memenuhi layar sepenuhnya */
   width: 100%;
-  text-align: center;
+  height: 100vh;       /* Menggunakan tinggi viewport */
+  min-height: 1024px;  /* Jaga-jaga agar elemen bawah tidak terpotong di layar pendek */
+}
+
+/* ALL IMAGE POSITIONS */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  /* PERBAIKAN UTAMA: */
+  width: 100%;         /* Lebar mengikuti layar (tidak dipatok 1440px) */
+  height: 100%;        /* Tinggi mengikuti container */
+  object-fit: cover;   /* Gambar akan mengisi area tanpa merusak rasio (crop otomatis) */
+  z-index: 0;
+}
+
+/* Karakter & Elemen Lain (Tetap pixel absolute sesuai request) */
+.ada-thorne {
+  position: absolute;
+  bottom: 0;
+  left: 5%; /* Paling kiri */
+  height: 50%;
+  width: auto;
+  z-index: 2;
+}
+
+.arthur-shelby {
+  position: absolute;
+  bottom: 0;
+  left: 15%; /* Di sebelah kiri */
+  height: 60%;
+  width: auto;;
+  z-index: 3;
+}
+
+.polly-gray {
+  position: absolute;
+  bottom: 0;
+  left: 28%; /* Di tengah agak kiri */
+  height: 55%;
+  width: auto;
+  z-index: 3;
+}
+
+.thomas-shelby {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  height: 90%;
+  object-fit: contain;
+  z-index: 4;
+}
+
+/* === JUDUL === */
+.page-title {
+  position: absolute;
+  top: 50px; 
+  left: 50px;     /* Full width agar centering bekerja sempurna */
+  width: 100%; /* Diperbaiki dari 100px (kekecilan) ke 100% */
+  text-align: left;
+  
+  font-size: 140px; 
+  color: #ffffff;
+  font-family: 'Metal Mania', Helvetica, sans-serif;
+  text-shadow: 4px 4px 10px #261f17;
+  letter-spacing: 5px;
   z-index: 10;
 }
 
-.welcome-text {
-  font-size: 3vw; /* Ukuran font ikut lebar layar */
-  color: #E7C691; /* Warna Emas Peaky Blinders */
-  letter-spacing: 0.3em;
-  font-weight: bold;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.9);
-  margin-bottom: 1vh;
-}
-
-.username-text {
-  font-size: 2vw;
-  color: #fff;
-  letter-spacing: 0.1em;
-  text-shadow: 0 4px 10px rgba(0,0,0,0.9);
-}
-
-/* Tombol START / ENTER */
-.btn-start {
+/* === TOMBOL START === */
+/* 1. Container Utama (Link) */
+/* Kita posisikan link-nya di tengah bawah. Elemen di dalamnya akan mengikuti. */
+.start-link {
   position: absolute;
-  bottom: 8%;      /* Posisi di bawah kaki karakter */
-  left: 50%;
-  transform: translateX(-50%);
+  bottom: 50px;        /* Jarak dari bawah */
+  left: 50%;           /* Posisi tengah horizontal */
+  transform: translateX(-50%); /* Geser balik 50% agar benar-benar di tengah */
   
-  width: 15vw;
-  height: 4vw;
-  min-width: 150px;
-  min-height: 50px;
-  
-  background: rgba(25, 25, 22, 0.9);
-  border: 2px solid #E7C691;
-  color: #E7C691;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 310px;
+  height: 93px;
   
   text-decoration: none;
-  font-size: 1.5vw;
-  font-weight: bold;
-  letter-spacing: 0.2em;
-  z-index: 20; /* Di atas segalanya */
-  
-  transition: all 0.3s ease;
+  z-index: 20;
   cursor: pointer;
-  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  transition: transform 0.2s; /* Efek animasi saat hover */
 }
 
-.btn-start:hover {
-  background: #E7C691;
-  color: #191916;
-  box-shadow: 0 0 30px #E7C691;
+/* Efek Hover: Membesar sedikit saat mouse diarahkan */
+.start-link:hover {
   transform: translateX(-50%) scale(1.05);
 }
 
-/* Media Query untuk HP (Portrait) agar karakter tidak tumpang tindih aneh */
-@media (max-aspect-ratio: 1/1) {
-  .char-arthur, .char-ada {
-    opacity: 0.5; /* Pudarkan karakter samping di HP */
-  }
-  .char-thomas {
-    height: 80%; /* Perkecil sedikit */
-  }
-  .welcome-text {
-    font-size: 6vw;
-    margin-top: 5vh;
-  }
-  .btn-start {
-    width: 40vw;
-    height: 8vh;
-    font-size: 4vw;
-    bottom: 15%;
-  }
+/* 2. Kotak Background */
+.rectangle {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%; /* Memenuhi container start-link */
+  
+  background-color: #383837b2;
+  border-radius: 10px;
+  border: 1px solid #fbddaf;
+  z-index: 1;
+}
+
+/* 3. Teks "START" */
+.text-wrapper {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%; /* Memenuhi container agar bisa di-center */
+  
+  /* Flexbox untuk menaruh teks PERSIS di tengah kotak */
+  display: flex;
+  align-items: center;     /* Tengah Vertikal */
+  justify-content: center; /* Tengah Horizontal */
+  
+  font-family: 'Lucida Fax', Helvetica, sans-serif;
+  color: #fbdeb0;
+  font-size: 32px;
+  letter-spacing: 3.2px;
+  font-weight: bold;
+  z-index: 2;
+  pointer-events: none; /* Agar klik tembus ke link */
+}
+
+/* VECTORS (Hiasan) */
+.vector-2 {
+  position: absolute;
+  width: 3.82%;
+  height: 3.71%;
+  top: 10%; /* Nilai persen negatif di kode lama (-230%) membuat hilang, saya reset */
+  left: 44.31%;
+  z-index: 5;
+}
+
+.vector-3 {
+  position: absolute;
+  width: 0;
+  height: 0;
+  top: 10%;
+  left: 46.67%;
+}
+
+.vector-4 {
+  position: absolute;
+  width: 3.68%;
+  height: 5.08%;
+  top: 5%;
+  left: 72.29%;
+  z-index: 5;
 }

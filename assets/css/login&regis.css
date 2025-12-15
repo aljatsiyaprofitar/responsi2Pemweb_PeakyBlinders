@@ -4,6 +4,11 @@
     src: url('../Font/LucidaFax.TTF'); 
 }
 
+@font-face {
+    font-family: "Metal mania";
+    src: url('../Font/MetalMania.ttf'); 
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -33,8 +38,10 @@ html, body {
     flex-direction: column;
     align-items: center;     /* Menengahkan Kiri-Kanan */
     justify-content: center; /* Menengahkan Atas-Bawah (INI KUNCINYA) */
-    width: 983px;
-    height: 770px;
+    width: 100%;
+    max-width: 983px;
+    height: 100%;
+    max-height: 770px;
     border-radius: 30px;
     background-color: #261f17e6; /* Warna cokelat transparan */
 }
@@ -147,4 +154,33 @@ form {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+/* Wrapper untuk input password dan icon */
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+/* Pastikan input field memenuhi container */
+.password-container .input-field {
+    width: 100%;
+    padding-right: 50px; /* Beri ruang di kanan agar teks tidak menabrak icon */
+}
+
+/* Posisi Icon Mata */
+.eye-icon {
+    position: absolute;
+    right: 20px;      /* Jarak dari kanan */
+    top: 50%;         /* Tengah vertikal */
+    transform: translateY(-50%); /* Koreksi posisi tengah */
+    cursor: pointer;
+    z-index: 10;
+    display: flex;    /* Agar SVG rapi */
+    opacity: 0.6;     /* Sedikit transparan saat default */
+    transition: opacity 0.3s;
+}
+
+.eye-icon:hover {
+    opacity: 1; /* Terang saat di-hover */
 }
